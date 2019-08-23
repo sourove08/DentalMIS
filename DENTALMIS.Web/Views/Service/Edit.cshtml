@@ -1,0 +1,42 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.ServiceSectionViewModel.ServiceViewModel
+@{
+    ViewBag.Title = (Model.ServiceId > 0) ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Service", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ServiceId)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.TreatmentCost)
+                @Html.EditorFor(x => x.TreatmentCost, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.TreatmentCost)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.TimesOfVisit)
+                @Html.EditorFor(x => x.TimesOfVisit, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.TimesOfVisit)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td style="float: right">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+

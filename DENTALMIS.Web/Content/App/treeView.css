@@ -1,0 +1,94 @@
+﻿    ul {
+        list-style-type: none;
+    }
+
+    .container .content {
+        display: none;
+        padding: 5px;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    .tree ul {
+        list-style: none outside none;
+        color: black;
+    }
+
+    .tree li a {
+        line-height: 25px;
+    }
+
+    .tree > ul > li > a {
+        color: #3B4C56;
+        display: block;
+        font-weight: normal;
+        position: relative;
+        text-decoration: none;
+    }
+
+    .tree li.parent > a {
+        padding: 0 0 0 28px;
+    }
+
+        .tree li.parent > a:before {
+            background-image: url("/Content/Images/plus_minus_icons.png");
+            background-position: 25px center;
+            content: "";
+            display: block;
+            height: 21px;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            vertical-align: middle;
+            width: 23px;
+        }
+
+    .tree ul li.active > a:before {
+        background-position: 0 center;
+    }
+
+    .tree ul li ul {
+        border-left: 1px solid #D9DADB;
+        display: none;
+        margin: 0 0 0 12px;
+        overflow: hidden;
+        padding: 0 0 0 25px;
+    }
+
+        .tree ul li ul li {
+            position: relative;
+            padding: 3px;
+        }
+
+            .tree ul li ul li:before {
+                border-bottom: 1px dashed #E2E2E3;
+                content: "";
+                left: -20px;
+                position: absolute;
+                top: 12px;
+                width: 15px;
+            }
+
+    #wrapper {
+        margin-left: 100px;
+        width: auto;
+        border-style: solid;
+        border: 2px solid;
+        border-radius: 25px;
+        font-size: 15px;
+    }
+
+    .chartofAcc {
+        font-size: 20px;
+        cursor: pointer;
+        color: black;
+    }
+
+
+    /*h2 {
+        color: #3b4c56;
+        text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+        font: 50px 'ChunkFiveRegular';
+    }*/

@@ -1,0 +1,83 @@
+﻿@using DENTALMIS.Utility
+@using DENTALMIS.Web
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugdetailViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 style="margin-left:450px; font-weight: bolder; color:darkorange;">Detail Description of Drug</h3>
+<section class="search formCover" style="margin-bottom: 5px;">
+    @using (Html.BeginForm("Index", "DrugDetails", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+
+        <table>
+            <tr>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.LabelFor(x => x.DrugGeneric.Name)
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.GenericId, Model.DrugGenericSelectListItems, "---All", new { @class = "search_dropdown" })
+                </td>
+                <td>
+                    @Html.SearchButton()
+                </td>
+            </tr>
+            @*<tr>
+                    <td>
+                        @Html.ActionLink("Add User", "Edit", "DrugBrand", new { @class = "AjaxPopup", title = "Add", @action = "DrugBrand/Edit" })
+                    </td>
+                </tr>*@
+        </table>
+    }
+</section>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+                @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/DrugDetails/Edit/" })
+            </p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.DrugDetails, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                            grid.Column("DrugGeneric.Name", header: "Generic Name"),
+                       grid.Column("Indication", header: "Indication"),
+                                grid.Column("Dosage", header: "Dosage"),
+                                grid.Column("Contraindication", header: "Contraindication"),
+                                         grid.Column("SideEffect", header: "SideEffect"),
+                                                  grid.Column("UseInPregnency", header: "UseInPregnency"),
+                                                           grid.Column("UseInLactation", header: "UseInLactation"),
+                                                                    grid.Column("DrugInteraction", header: "DrugInteraction"),
+                                                                             grid.Column("Precaution", header: "Precaution"),
+                                                                                      grid.Column("Mechanism", header: "Mechanism"),
+
+
+
+                       grid.Column("Detail/Edit", format: @<text><button class="edit" action="/DrugDetails/Edit?DrugDetailId=@item.DrugDetailId"></button></text>, canSort: false),
+                       grid.Column("Delete",format:@<text><button class="delete" action="/DrugDetails/Delete?DrugDetailId=@item.DrugDetailId"></button></text>, canSort: false)));
+        }
+    </div>
+</section>

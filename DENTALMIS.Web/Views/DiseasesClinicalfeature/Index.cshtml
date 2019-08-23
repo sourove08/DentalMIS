@@ -1,0 +1,85 @@
+﻿@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.DiseasesClinicalFeatureViewModel
+@{
+    ViewBag.Title = "DiseasesClinicalfeature";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left: 450px">Clinical Feature Of Diseases</h3>
+<section class="search formCover" style="margin-bottom: 5px;">
+    @using (Html.BeginForm("Index", "DiseasesClinicalfeature", FormMethod.Get, new { @class = "submit-allow" @*"submit-allow ignore-validation"*@ }))
+    {
+        <table>
+            <tr>
+                <td>
+                    <strong>
+                        @Html.LabelFor(x => x.Symptom)
+
+                    </strong>
+                </td>
+                <td></td>
+                <td></td>
+
+                <td>@Html.TextBoxFor(x => x.SearchBySymptom, new { @placeholder = "Search", @class = "search_TextBox" })</td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    <strong>
+                        @Html.LabelFor(x => x.Sign)
+                    </strong>
+                </td>
+                <td></td>
+
+                <td></td>
+
+                <td>
+                    @Html.TextBoxFor(x => x.SearchBySign, new { @placeholder = "Search", @class = "search_TextBox" })
+                </td>
+                <td></td>
+
+                <td>@Html.SearchButton()</td>
+            </tr>
+        </table>
+    }
+</section>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>@Html.Button("Add new", new { @class = "AjaxPopup", @action = "/DiseasesClinicalfeature/Edit/" })</p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.DisesesClinicalFeatures, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+            tableStyle: "webgrid-table webgrid",
+            headerStyle: "webgrid-header",
+            footerStyle: "webgrid-footer",
+            alternatingRowStyle: "webgrid-alternating-row",
+            selectedRowStyle: "webgrid-selected-row",
+            rowStyle: "webgrid-row-style",
+            firstText: "First",
+            lastText: "last",
+            nextText: "Next",
+            mode: WebGridPagerModes.All,
+            previousText: "Previous",
+            columns: grid.Columns(
+            grid.Column("Symptom", header: "Diseases Symptom"),
+            grid.Column("Sign", header: "Diseases Sign"),
+                grid.Column("Detail/Edit", format: @<text><button class="edit" action="/DiseasesClinicalfeature/Edit?ClinicalFeatureId=@item.ClinicalFeatureId"></button></text>, canSort: false),
+                         grid.Column("Delete",format:@<text><button class="delete" action="/DiseasesClinicalfeature/Delete?ClinicalFeatureId=@item.ClinicalFeatureId"></button></text>, canSort: false)));
+
+
+
+        }
+    </div>
+</section>

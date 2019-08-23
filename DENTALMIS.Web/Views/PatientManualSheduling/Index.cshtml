@@ -1,0 +1,155 @@
+﻿@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PatientManualShedulingViewModel
+@{
+    ViewBag.Title = "Employee Manual Attendance ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 style="margin-left: 450px; font-weight: bolder;color: darkblue;">[---Patient Sheduling---]</h3>
+
+<section class="search ">
+    
+    @using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="search" style="margin-left: 200px;">
+        <table class="tabefont">
+            <tr>
+                <td width="100px"></td>
+                <td align="left"><strong>Patient Code</strong></td>
+                <td width="20px"></td>
+                <td>
+                    @Html.HiddenFor(model => model.PatientId, new { @class = "PatientId" })
+                    @Html.HiddenFor(model => model.Id, new { @class = "Id" })
+                    @Html.TextBoxFor(model => model.PatientCode, new { @class = "PatientCode text ui-widget-content ui-corner-all", style = "height: 35px" })
+                    @Html.ValidationMessageFor(model => model.PatientCode)
+
+                </td>
+                <td><input type="button" value="Search" onclick="SearchPatientData();" /></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="left">Patient Name</td>
+                <td width="20px"></td>
+                <td>
+                    <input type="text" readonly="readonly" class="Name text ui-widget-content ui-corner-all" style="height: 35px" />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="left">Gender</td>
+                <td width="20px"></td>
+                <td>
+                    <input type="text" readonly="readonly" class="Gender text ui-widget-content ui-corner-all" style="height: 35px" />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="left">Diseases </td>
+                <td width="20px"></td>
+                <td>
+                    <input type="text" readonly="readonly" class="Diseases text ui-widget-content ui-corner-all" style="height: 35px" />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="left">Contact </td>
+                <td width="20px"></td>
+                <td>
+                    <input type="text" readonly="readonly" class="Contact text ui-widget-content ui-corner-all" style="height: 35px" />
+                </td>
+            </tr>
+
+            @*<tr>
+                    <td></td>
+                    <td align="left">Employee Department</td>
+                    <td width="20px"></td>
+                    <td>
+                        <input type="text" readonly="readonly" class="EmployeeDepartment" />
+                    </td>
+                </tr>*@
+
+            <tr>
+                <td></td>
+                <td align="left">In Date</td>
+                <td width="20px"></td>
+                <td>
+                    @Html.TextBoxFor(model => model.VisitingTime, new { @class = "VisitingTime text ui-widget-content ui-corner-all", @Value = DateTime.Now, type = "date", style = "height: 35px" })
+                    @Html.ValidationMessageFor(model => model.VisitingTime)
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="left">In Time : (HH:MM)</td>
+                <td width="20px"></td>
+                <td>
+                    @Html.DropDownList("Hours", (IEnumerable<SelectListItem>)ViewBag.Hours, new { @class = "InHours text ui-widget-content ui-corner-all", style = "width: 90px" })
+                    @Html.DropDownList("minutes", (IEnumerable<SelectListItem>)ViewBag.minutes, new { @class = "InMinutes text ui-widget-content ui-corner-all", style = "width: 90px" })
+                    @Html.DropDownList("period", (IEnumerable<SelectListItem>)ViewBag.period, new { @class = "InPeriod text ui-widget-content ui-corner-all", style = "width: 90px" })
+                </td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td align="left">Purpose</td>
+        <td width="20px"></td>
+                <td>
+
+                    @Html.DropDownList("PataientType", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text = "New" , Value = "New"},
+                    new SelectListItem{Text = "Old", Value = "Old"}
+                    
+                }, "--Select--", new { @class = "PataientType text ui-widget-content ui-corner-all" })
+                    @Html.ValidationMessageFor(x => x.PataientType)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">Serial No</td>
+                <td width="20px"></td>
+                <td>
+                    @Html.TextBoxFor(model => model.serialNo, new { @class = "Serial text ui-widget-content ui-corner-all", style = "width:280px" })
+                    @Html.ValidationMessageFor(model => model.serialNo)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">Purpose</td>
+                <td width="20px"></td>
+                <td>
+                    @Html.TextAreaFor(model => model.VisitingPurpose, new { @class = "Purpose text ui-widget-content ui-corner-all", style = "width:280px" })
+                    @Html.ValidationMessageFor(model => model.VisitingPurpose)
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="left"></td>
+                <td width="20px"></td>
+                <td>
+                    <input type="button" value="Save" onclick="SavePatientShedule();" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+}
+
+
+    
+
+</section>
+
+
+
+<script src="~/Scripts/AppScripts/PatientManualShedule.js"></script>
+
+
+

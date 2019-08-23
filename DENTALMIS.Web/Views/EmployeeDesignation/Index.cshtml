@@ -1,0 +1,51 @@
+﻿
+
+@using System.Runtime.Remoting.Messaging
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.EmployeeViewModel.EmployeeDesigViewModel
+@{
+    ViewBag.Title = "Employee Designation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h3 style="margin-left:450px;font-weight: bolder; color: darkblue;">[--Employee Designation--]</h3>
+
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+
+                @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/EmployeeDesignation/Edit/" })
+
+            </p>
+            @{
+                var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+                grid.Bind(Model.Employeedesignations, rowCount: Model.TotalRecords, autoSortAndPage: false);
+                grid.Pager(WebGridPagerModes.All);
+                @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                                                   grid.Column("DesinationName", header: "Designation Name"),
+
+
+                         grid.Column("Detail/Edit", format: @<text><button class="edit" action="/EmployeeDesignation/Edit?EmployeeDesignationId=@item.EmployeeDesignationId"></button></text>, canSort: false),
+                         grid.Column("Delete",format:@<text><button class="delete" action="/EmployeeDesignation/Delete?EmployeeDesignationId=@item.EmployeeDesignationId"></button></text>, canSort: false)));
+            }
+        </div>
+     
+    </div>
+</section>
+

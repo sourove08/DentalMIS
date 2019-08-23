@@ -1,0 +1,111 @@
+﻿@using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.ClinicDescriptionModel.ClinicDetailsViewModel
+@{
+    ViewBag.Title = (Model.ClinicDescriptionId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "ClinicDetails", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ClinicDescriptionId)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            
+            <td colspan="2">
+                @Html.LabelFor(x => x.ClinicType)
+               
+
+                @Html.DropDownList("ClinicType", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text = "Clinic" , Value = "Clinic"},
+                    new SelectListItem{Text = "Diagnosis Center", Value = "Diagnosis Center"},
+                     new SelectListItem{Text = "Hospital", Value = "Hospital"}
+                }, "--Select--", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.ClinicType)
+            </td>
+
+
+
+        </tr>
+        <tr class="form_group">
+
+
+
+            <td>
+                @Html.LabelFor(x => x.ClinicContact)
+                @Html.EditorFor(x => x.ClinicContact, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.ClinicContact)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Address)
+                @Html.EditorFor(x => x.Address, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Address)
+            </td>
+            
+
+
+
+
+
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.ClinicMail)
+                @Html.EditorFor(x => x.ClinicMail, new { htmlattributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.ClinicMail)
+            </td>
+
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td >
+                @Html.LabelFor(x => x.websilte)
+                @Html.EditorFor(x => x.websilte, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.websilte)
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td class="form_group" style="float: right;">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+

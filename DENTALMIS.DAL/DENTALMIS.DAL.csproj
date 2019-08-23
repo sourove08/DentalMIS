@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FE5F762-727E-4795-BAA1-241F8FD92C7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DENTALMIS.DAL</RootNamespace>
+    <AssemblyName>DENTALMIS.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IRepository\IClinicSectionRepository\IClinicAccessoryRepository.cs" />
+    <Compile Include="IRepository\IClinicSectionRepository\IClinicAccountRepository.cs" />
+    <Compile Include="IRepository\IClinicSectionRepository\IClinicDescriptionRepository.cs" />
+    <Compile Include="IRepository\IClinicSectionRepository\IClinicInstrumentRepository.cs" />
+    <Compile Include="IRepository\IClinicSectionRepository\ICliniEstablismentRepository.cs" />
+    <Compile Include="IRepository\IClinicSectionRepository\IRrowMeterialRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IDiseasesClinicalFeatureRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IDiseasesInvestigationRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IDiseasesManagementRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IDiseasesRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IGenderRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IPatientConditionRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IPatientMedicalHistoryRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IPatientRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IPaymentMethodRepository.cs" />
+    <Compile Include="IRepository\IDiseasesSectionRepository\IServiceRepository.cs" />
+    <Compile Include="IRepository\IDoctorSectionRepositoy\IDoctorDesignationRepossitory.cs" />
+    <Compile Include="IRepository\IDoctorSectionRepositoy\IDoctorRepository.cs" />
+    <Compile Include="IRepository\IDrugSectionRepository\IDrugBrandRepository.cs" />
+    <Compile Include="IRepository\IDrugSectionRepository\IDrugDetailRepository.cs" />
+    <Compile Include="IRepository\IDrugSectionRepository\IDrugGenericRepository.cs" />
+    <Compile Include="IRepository\IEmployeeRepository\IEmployeeDesignationRepository.cs" />
+    <Compile Include="IRepository\IEmployeeRepository\IEmployeeRepository.cs" />
+    <Compile Include="IRepository\IPatientRepository\IPatientManualSedulingRepository.cs" />
+    <Compile Include="IRepository\IPatientRepository\IPatientSheduleRepository.cs" />
+    <Compile Include="IRepository\IReportRepository\IReportRepository.cs" />
+    <Compile Include="IRepository\IRepository.cs" />
+    <Compile Include="IRepository\ITodaysStatussectionRepository\ITodayStatusRepository.cs" />
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ClinicSectionRepository\ClinicAccessoryRepository.cs" />
+    <Compile Include="Repository\ClinicSectionRepository\ClinicAccounRepositoroy.cs" />
+    <Compile Include="Repository\ClinicSectionRepository\ClinicDescrionRepossitory.cs" />
+    <Compile Include="Repository\ClinicSectionRepository\ClinicEsatblismentRepository.cs" />
+    <Compile Include="Repository\ClinicSectionRepository\ClinicInstrumentRepository.cs" />
+    <Compile Include="Repository\ClinicSectionRepository\RowMeterialRpository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\DiseaseClinicalFeatureRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\DiseasesInvestigationRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\DiseasesManagementRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\DiseasesRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\GenderRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\PatientConditionRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\PatientMedicalHistoryRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\PatientRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\PaymentMethodRepository.cs" />
+    <Compile Include="Repository\DiseasesSectionRepository\ServiceRepository.cs" />
+    <Compile Include="Repository\DoctorSectionRepository\DoctorDesignationRepository.cs" />
+    <Compile Include="Repository\DoctorSectionRepository\DoctorRepository.cs" />
+    <Compile Include="Repository\DrugSectionRepository\DrugBrandRepository.cs" />
+    <Compile Include="Repository\DrugSectionRepository\DrugDetailRepository.cs" />
+    <Compile Include="Repository\DrugSectionRepository\DrugGenericRepository.cs" />
+    <Compile Include="Repository\EmployeeRepository\EmployeeDesignationRepository.cs" />
+    <Compile Include="Repository\EmployeeRepository\EmployeeRepository.cs" />
+    <Compile Include="Repository\PatientRepository\PatientManualShedulingRepository.cs" />
+    <Compile Include="Repository\PatientRepository\PatientSheduleRepository.cs" />
+    <Compile Include="Repository\ReportRepository\ReportRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\TodayStatusrepository\TodayStatusRepository.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DENTALMIS.Model\DENTALMIS.Model.csproj">
+      <Project>{819a63f7-1e93-4280-97bd-a956833efb8a}</Project>
+      <Name>DENTALMIS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DENTALMIS.Utility\DENTALMIS.Utility.csproj">
+      <Project>{12CD0758-EF30-4BF8-B55C-5EC021136F04}</Project>
+      <Name>DENTALMIS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,49 @@
+﻿@using System.Web.UI.WebControls
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.GenderSectionViewModel.GenderViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 style="margin-left:450px;font-weight: bolder; color: darkorange;">Gender</h3>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+            <p>@Html.Button("Add new", new { @class = "AjaxPopup", @action = "/Gender/Edit/" })</p>
+            </p>
+
+           
+        </div>
+        
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.Genders, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id="grid" },
+                tableStyle:"webgrid-table webgrid",
+                headerStyle:"webgrid-header",
+                footerStyle:"webgrid-footer",
+                alternatingRowStyle:"webgrid-alternating-row",
+                selectedRowStyle:"webgrid-selected-row",
+                rowStyle:"webgrid-row-style",
+                firstText:"First",
+                lastText:"Last",
+                nextText:"Next",
+                mode:WebGridPagerModes.All,
+                previousText:"Previous",
+                columns:grid.Columns(
+                
+                
+                grid.Column("Title",header:"Gender"),
+                    grid.Column("Edit/Details", format:@<text><button class="edit" action="/Gender/Edit?GenderId=@item.GenderId"></button></text>, canSort:false),
+                    grid.Column("Delete", format:@<text><button class="delete" action="/Gender/Delete?GenderId=@item.GenderId"></button></text>, canSort:false)
+                )
+            
+                );
+        }
+    </div>
+</section>
+
+

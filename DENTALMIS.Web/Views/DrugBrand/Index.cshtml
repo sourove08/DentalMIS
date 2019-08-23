@@ -1,0 +1,139 @@
+﻿
+@using System.Web.UI.WebControls
+@using DENTALMIS.Utility
+@using DENTALMIS.Web
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugBrandViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var displayStyle = (Model.DrugBrands.Count > 0) ? "" : "none";
+}
+<h3 style="margin-left:450px; font-weight: bolder; color:darkorange;">Brand Name of Drug List</h3>
+<section class="search formCover" style="margin-bottom: 5px;">
+    @using (Html.BeginForm("Index", "DrugBrand", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+         @Html.HiddenFor(x => x.IsSearch)
+
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Name)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.SeachByBrandName, new { @placeholder = "Search", @class = "search_TextBox" })
+                </td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+                <td>
+                    @Html.LabelFor(x => x.DrugGeneric.Name)
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.GenericId, Model.DruggenericSelectListItems, "---All", new { @class = "search_dropdown" })
+                </td>
+                <td>
+                    @Html.SearchButton()
+                </td>
+            </tr>
+            @*<tr>
+                <td>
+                    @Html.ActionLink("Add User", "Edit", "DrugBrand", new { @class = "AjaxPopup", title = "Add", @action = "DrugBrand/Edit" })
+                </td>
+            </tr>*@
+        </table>
+    }
+</section>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+                @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/DrugBrand/Edit/" })
+            </p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.DrugBrands, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                    grid.Column("Name", header: "Brand Name"),
+                    grid.Column("Preparation", header: "Preparation"),
+                    grid.Column("DrugGeneric.Name", header: "Generic Name"),
+
+                    grid.Column("Detail/Edit", format: @<text><button class="edit" action="/DrugBrand/Edit?BrandId=@item.BrandId"></button></text>, canSort: false),
+                 
+                    grid.Column("Delete",format:@<text><button class="delete"  action="/DrugBrand/Delete?BrandId=@item.BrandId"></button></text>, canSort: false)));
+        }
+    </div>
+  
+    <div class="exportReport">
+        <a style="display:@displayStyle;" href="@Url.Action("GetExcel", "DrugBrand", new { SearchKey = Model.SeachByBrandName })"><img src="~/Content/images/Excel-icon.png" width="30" height="30" title="Export to Excel" /></a>
+        <a style="display: @displayStyle;" class="printspecificpagereport" href="@Url.Action("Print", "DrugBrand", new { SearchKey = Model.SeachByBrandName })"><img src="~/Content/images/print-icon.png" /></a>
+        @*<div class="exportReport">
+          
+            <img style="display:@displayStyle;" class="printspecificpagereport" action="@Url.Action("Print", "DrugBrand", new { SearchKey = Model.SearchKey})" alt="Print" title="Print" src="~/Content/images/print-icon.png" />
+        </div>
+
+
+    </div>
+    <div class="exportReport">
+       
+        @*<a style="display:@displayStyle;" href="@Url.Action("GetPdf", "Branch", new {  SearchByBranchName = Model.SearchByBranchName, SearchByCompany = Model.SearchByCompany })" target="_blank"><img src="~/Content/images/Pdf-icon.png" width="30" height="30" title="Export to Excel" /></a>*@
+        <img style="display:@displayStyle;" class="printspecificpagereport" action="@Url.Action("Print", "DrugBrand", new { SearchKey = Model.SeachByBrandName })" title="Print" src="~/Content/images/print-icon.png" />
+    </div>
+</section>
+@*<section class="search">
+    
+</section>*@
+@section scripts
+{
+    <script type="text/javascript">
+        $('.ShowVLButton').on('click', function () {
+            var $this = $(this);
+            var form = $this.parents('form:first');
+            var url = "/DrugBrand/Print/";
+            jQuery.ajax({
+                url: url,
+                dataType: 'html',
+                data: form.serialize(),
+                type: "GET",
+                success: function (response) {
+                    var data = response;
+                    var popupWindow = window.open('', '', 'width=810,height=520,left=0,top=0,toolbar=0,status=0');
+                    popupWindow.document.open();
+                    popupWindow.document.write('<HTML>\n<HEAD>\n');
+                    popupWindow.document.write('<link rel="stylesheet" type="text/css" href="~/Content/App/PdfReport.css"/>');
+                    popupWindow.document.write('</HEAD>\n');
+                    popupWindow.document.write('<BODY >\n');
+                    popupWindow.document.write(data);
+                    popupWindow.document.write('</BODY>\n');
+                    popupWindow.document.write('</HTML>\n');
+                    popupWindow.document.close();
+                    popupWindow.focus();
+                    // popupWindow.print();
+                    //  popupWindow.close();
+                }
+            });
+        })
+    </script>
+}
+
+
+
+
+

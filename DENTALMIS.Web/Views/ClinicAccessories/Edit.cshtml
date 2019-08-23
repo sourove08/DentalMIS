@@ -1,0 +1,85 @@
+﻿@using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+@using DENTALMIS.Web.Extension
+@model  DENTALMIS.Web.Models.ClinicDescriptionModel.ClinicAccessoryViewModel
+@{
+    ViewBag.Title = (Model.AccessoriesId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "ClinicAccessories", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.AccessoriesId)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+
+            <td>
+                @Html.LabelFor(x => x.Purpose)
+                @Html.EditorFor(x => x.Purpose, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Purpose)
+            </td>
+
+
+
+        </tr>
+        <tr class="form_group">
+
+
+
+
+
+            <td>
+                @Html.Label("Market Price")
+                @Html.EditorFor(x => x.MarketCost, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.MarketCost)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.Label("Stok Ammount")
+                @Html.EditorFor(x => x.StockAmount, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.StockAmount)
+            </td>
+
+
+            
+
+
+
+        </tr>
+
+        <tr class="form_group">
+            <td style="float: left">
+                @Html.SaveButton()
+            </td>
+        </tr>
+
+
+    </table>
+}
+

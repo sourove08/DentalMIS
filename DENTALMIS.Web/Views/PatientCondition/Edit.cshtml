@@ -1,0 +1,127 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PatientConditionViewModel
+@{
+    ViewBag.Title = (Model.PatientConditionId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "PatientCondition", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x =>x.PatientConditionId )
+    @Html.ValidationSummary(true)
+    <table>
+    <tr class="form_group">
+        <td>
+            @Html.LabelFor(x => x.Disease.Name)
+
+          
+
+            @Html.DropDownListFor(x => x.DiseasesId, Model.DiseasesSelectListItems, "-Select-", new { @onchange = "getPatientByDiseasesId(this.value)", @class = "text ui-widget-content ui-corner-all" })
+          
+            @Html.ValidationMessageFor(x => x.Patient.Name)
+
+        </td>
+    </tr>
+        <tr class="form_group">
+            <td>
+
+                @Html.LabelFor(x => x.Patient.Name)
+
+
+                @Html.DropDownListFor(x => x.PatienId, Model.PatientSelectListItems, "-All-", new { id = "patientsName", @class = "text ui-widget-content ui-corner-all" })
+             
+
+
+                @Html.ValidationMessageFor(x => x.Disease.Name)
+            </td>
+        </tr>
+    <tr class="form_group">
+
+        <td>
+            @Html.LabelFor(x => x.Beforetreatment)
+            @Html.EditorFor(x => x.Beforetreatment, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+            @Html.ValidationMessageFor(x => x.Beforetreatment)
+        </td>
+           
+
+    </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.AfterTreatment)
+                @Html.EditorFor(x => x.AfterTreatment, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.AfterTreatment)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Service.Name)
+                @Html.DropDownListFor(x => x.ServiceId, Model.ServiceSelectListItems, "--Select Service--", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Service.Name)
+            </td>
+           
+        </tr>
+
+        <tr class="form_group">
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td style="float: right;">
+                @Html.SaveButton()
+            </td>
+
+        </tr>
+    </table>
+}
+
+
+
+
+<script type="text/javascript">
+    //function getPatientByDisease() {
+    //  {
+    //        var dId = $(this).val();
+    //        var responseText = $("#diseasesId option:selected").text();
+    //        if (responseText != '--Select diseases Name--') {
+    //            getPatientByDiseasesId(dId);
+    //        } else {
+    //            $("#patientId").find('option')
+    //                .remove()
+    //                .end()
+    //                .append('<option>--Select--</option>');
+
+    //        }
+    //    };
+    //}
+    function getPatientByDiseasesId(dId) { // This is for cascade dropdown
+        var url = "/PatientCondition/GetAllThePatientByDiseasesId";
+        $.ajax({
+            url: url,
+            type: "get",
+            data: { "diseasesId": dId },
+            dataType: 'json',
+            success: function (data) {
+                if (data.length != 0) {
+                    var items = '<option >--Select Patient Name--</option>';
+                    $.each(data, function (i, d) {
+                        items += "<option value='" + d.PatientId + "'>" + d.Name + "</option>";
+                    });
+                    $('#patientsName').html(items);
+                } else {
+                    var items = '<option>Not found</option>';
+                    $('#patientsName').html(items);
+                }
+
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,69 @@
+﻿
+@model DENTALMIS.Web.Models.ReportViewModel.DynamicReportHeaderViewModel
+@{
+    ViewBag.Title = "Bill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 style="margin-left:400px;">[---Billing Systemt Report--]</h4>
+<section class="search" style="margin-bottom: 5px;">
+
+    @using (Html.BeginForm("BillReport", "Report", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+        @Html.HiddenFor(x => x.IsSearch)
+        <table>
+            <tr>
+
+                <td>
+                    @Html.LabelFor(x => x.FromDate)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @placeholder = "FromDate", @class = "search_TextBox" } })
+                </td>
+                <td>
+                    @Html.LabelFor(x => x.ToDate)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.ToDate, new { htmlAttributes = new { @placeholder = "ToDate", @class = "search_TextBox" } })
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.PatientCode)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.PatientCode, new { htmlAttributes = new { @placeholder = "PatientCode", @class = "search_TextBox" } })
+                </td>
+                <td></td>
+                <td>
+                    <input type="button" id="reportPdf" value="Report" />
+                </td>
+            </tr>
+        </table>
+
+    }
+</section>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $('#reportPdf').click(function (e) {
+            var form = $(this).parents('form:first');
+            window.open(form.attr('action') + '?' + form.serialize());
+            e.preventDefault();
+        //    if (jQuery.validator && jQuery.validator.unobtrusive) {
+        //        $form.validate();
+        //        if (!$form.valid()) {
+        //            return false;
+        //        } else {
+        //            window.open($form.attr('action') + '?' + $form.serialize());
+        //            e.preventDefault();
+        //        }
+        //    }
+        }
+        );
+    </script>
+
+
+}

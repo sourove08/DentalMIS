@@ -1,0 +1,66 @@
+﻿    label, input {
+        display: block;
+        font-size: 12px;
+    }
+
+    .form_group {
+        display: block;
+        font-size: 12px;
+    }
+    .logo img {
+    border-radius: 145px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    height: 105px;
+    margin-bottom: 25px;
+    width: 105px;
+}
+                .loginPage {
+    padding: 21px;
+}
+                
+    section .innerContainer
+    {
+        background: #ffffff none repeat scroll 0 0;
+   
+    }
+
+    input.text {
+        margin-bottom: 5px;
+        width: 400px;
+        padding: .4em;
+    }
+    select.text {
+        margin-bottom: 5px;
+        width: 400px;
+        padding: .4em;
+    }
+
+    .field-validation-error {
+        color: #ff0000;
+        font-size: 12px;
+    }
+
+    .input-validation-error {
+        border: 1px solid #ff0000;
+        background-color: #ffeeee;
+        font-size: 12px;
+    }
+.formCover {
+    width: auto;
+    box-shadow: 3px 5px 10px #ccc;
+    background-color: #FFF;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+ .fieldTitleCls {
+        color: #666;
+        float: left;
+        font-family: Verdana;
+        font-weight: bold;
+        margin-top: 10px;
+        width: 130px;
+        /*width: auto;*/
+    }
+   .labelInstruction {
+        color: #D04A48;
+    }

@@ -1,0 +1,102 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugBrandViewModel
+@{
+    ViewBag.Title = (Model.BrandId > 0) ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+    @using (Html.BeginForm("Save", "DrugBrand", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.BrandId)
+        
+          <table>
+        <tr class="form_group ">
+            <td>
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+             
+            </td>
+            
+           
+        </tr>
+              <tr>
+                  
+                  <td>
+                      @Html.ValidationMessageFor(model => model.Name)
+                  </td>
+              </tr>
+
+        <tr>
+            <td class="form_group ">
+                @Html.LabelFor(model => model.Preparation)
+                @Html.EditorFor(model => model.Preparation, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+            </td>
+        </tr>
+              <tr>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Preparation)
+                </td>
+
+            </tr>
+        <tr>
+            <td class="form_group ">
+                @Html.LabelFor(model => model.DrugGeneric.Name)
+                @Html.DropDownListFor(model => model.GenericId, Model.DruggenericSelectListItems, "-All-", new { @class = "text ui-widget-content ui-corner-all" })
+                    
+            </td>
+        </tr>
+              <tr>
+                <td>
+                    @Html.ValidationMessageFor(model => model.DrugGeneric.Name)
+                </td>
+
+            </tr>
+
+
+            <tr >
+               <td class="form_group"style="float: right;">@Html.SaveButton()</td> 
+            </tr>
+
+</table>
+            
+            @*<div class="form_group ">
+                <div>
+                    @Html.LabelFor(model => model.Name)
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div>
+                <div class="form_group ">
+                    @Html.LabelFor(model => model.Preparation)
+                    @Html.EditorFor(model => model.Preparation, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.Preparation)
+                </div>
+
+            </div>
+            <div>
+                <div class="form_group ">
+                    @Html.LabelFor(model => model.DrugGeneric.Name)
+                    @Html.DropDownListFor(model => model.GenericId, Model.DruggenericSelectListItems, "-All-", new { @class = "text ui-widget-content ui-corner-all" })
+                </div>
+
+                <div>
+                    @Html.ValidationMessageFor(model => model.DrugGeneric.Name)
+                </div>
+
+            </div>
+
+
+            <div style="float: right">
+                @Html.SaveButton()
+            </div>*@
+
+
+            }
+    

@@ -1,0 +1,119 @@
+﻿@using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.ClinicDescriptionModel.ClinicEstablishmentViewModel
+@{
+    ViewBag.Title = (Model.EstablishmentId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "ClinicEstablishment", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.EstablishmentId)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.ClinicHouseCharge)
+                @Html.EditorFor(x => x.ClinicHouseCharge, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.ClinicHouseCharge)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+
+            <td>
+                @Html.LabelFor(x => x.EmployeeCost)
+                @Html.EditorFor(x => x.EmployeeCost, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.EmployeeCost)
+            </td>
+            
+           
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.InstrumentServiceCost)
+                @Html.EditorFor(x => x.InstrumentServiceCost, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.InstrumentServiceCost)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.LabelFor(x => x.RowmaterialCost)
+                @Html.EditorFor(x => x.RowmaterialCost, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.RowmaterialCost)
+            </td>
+
+
+
+
+
+
+
+
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Vat)
+                @Html.EditorFor(x => x.Vat, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Vat)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.ElectricityBill)
+                @Html.EditorFor(x => x.ElectricityBill, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.ElectricityBill)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Date)
+                @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Date)
+          
+        </tr>
+
+
+        
+        
+        <tr class="form_group">
+
+            <td style="float: left">
+                @Html.SaveButton()
+            </td>
+        </tr>
+
+
+
+
+    </table>
+}
+

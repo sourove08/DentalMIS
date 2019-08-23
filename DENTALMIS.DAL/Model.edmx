@@ -1,0 +1,1758 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DENTALERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClincDescription">
+          <Key>
+            <PropertyRef Name="ClinicDescriptionId" />
+          </Key>
+          <Property Name="ClinicDescriptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClinicType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClinicContact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="websilte" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClinicMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicAccounts">
+          <Key>
+            <PropertyRef Name="ClinicAccountId" />
+          </Key>
+          <Property Name="ClinicAccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Income" Type="int" Nullable="false" />
+          <Property Name="OutCome" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="DayTotalIncome" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="TotalIncome" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicalAccessories">
+          <Key>
+            <PropertyRef Name="AccessoriesId" />
+          </Key>
+          <Property Name="AccessoriesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MarketCost" Type="int" />
+          <Property Name="StockAmount" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicalInstrument">
+          <Key>
+            <PropertyRef Name="InstrumentId" />
+          </Key>
+          <Property Name="InstrumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Market" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicEmployee">
+          <Key>
+            <PropertyRef Name="ClinicEmployeeId" />
+          </Key>
+          <Property Name="ClinicEmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeDesignationId" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicEstablishment">
+          <Key>
+            <PropertyRef Name="EstablishmentId" />
+          </Key>
+          <Property Name="EstablishmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClinicHouseCharge" Type="int" Nullable="false" />
+          <Property Name="EmployeeCost" Type="int" Nullable="false" />
+          <Property Name="ElectricityBill" Type="int" Nullable="false" />
+          <Property Name="RowmaterialCost" Type="int" Nullable="false" />
+          <Property Name="InstrumentServiceCost" Type="int" Nullable="false" />
+          <Property Name="TotalCharge" Type="int" Nullable="false" />
+          <Property Name="Vat" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diseases">
+          <Key>
+            <PropertyRef Name="DiseasesId" />
+          </Key>
+          <Property Name="DiseasesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aetiology" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Pathophysiology" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DiseasesInvestigationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiseasesInvestigation">
+          <Key>
+            <PropertyRef Name="DiseasesInvestigationId" />
+          </Key>
+          <Property Name="DiseasesInvestigationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Result" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ClinicalFeatureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiseasesManagement">
+          <Key>
+            <PropertyRef Name="DiseasesManagementId" />
+          </Key>
+          <Property Name="DiseasesManagementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManagementProcess" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Prognosis" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DiseasesId" Type="int" Nullable="false" />
+          <Property Name="DiseasesInvestigationId" Type="int" Nullable="false" />
+          <Property Name="ClinicalFeatureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DisesesClinicalFeature">
+          <Key>
+            <PropertyRef Name="ClinicalFeatureId" />
+          </Key>
+          <Property Name="ClinicalFeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Symptom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sign" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="DoctorId" />
+          </Key>
+          <Property Name="DoctorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegistrationNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacebookId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Twitter" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="DessignationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DoctorsDesignations">
+          <Key>
+            <PropertyRef Name="DoctorDesignationId" />
+          </Key>
+          <Property Name="DoctorDesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrugBrand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Preparation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="GenericId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrugDetails">
+          <Key>
+            <PropertyRef Name="DrugDetailId" />
+          </Key>
+          <Property Name="DrugDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Indication" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Dosage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Contraindication" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SideEffect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UseInPregnency" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UseInLactation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DrugInteraction" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Precaution" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Mechanism" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="GenericId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrugGeneric">
+          <Key>
+            <PropertyRef Name="GenericId" />
+          </Key>
+          <Property Name="GenericId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employeedesignation">
+          <Key>
+            <PropertyRef Name="EmployeeDesignationId" />
+          </Key>
+          <Property Name="EmployeeDesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesinationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="VisitingtDate" Type="datetime" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="SerialNumber" Type="int" />
+          <Property Name="AppionmentDate" Type="datetime" />
+          <Property Name="CallingDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="DiseasesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientCondition">
+          <Key>
+            <PropertyRef Name="PatientConditionId" />
+          </Key>
+          <Property Name="PatientConditionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Beforetreatment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AfterTreatment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="PatienId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="DiseasesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientShedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="PatientCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PataientType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="VisitingTime" Type="datetime" Nullable="false" />
+          <Property Name="VisitingPurpose" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="serialNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientsMedicalHistory">
+          <Key>
+            <PropertyRef Name="PatientHistoryId" />
+          </Key>
+          <Property Name="PatientHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiseasesId" Type="int" Nullable="false" />
+          <Property Name="VitalSign" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Medicalhistory" Type="nvarchar(max)" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="DiscountAmount" Type="int" Nullable="false" />
+          <Property Name="Charge" Type="int" Nullable="false" />
+          <Property Name="TotalCharge" Type="int" Nullable="false" />
+          <Property Name="Paid" Type="int" Nullable="false" />
+          <Property Name="Due" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastPaidDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RowMatrial">
+          <Key>
+            <PropertyRef Name="RowMaterialId" />
+          </Key>
+          <Property Name="RowMaterialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+          <Property Name="ManufacturingDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TreatmentCost" Type="int" Nullable="false" />
+          <Property Name="TimesOfVisit" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TodaysPatientstatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="SerialNo" Type="int" />
+          <Property Name="visitingtime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VisitingDate" Type="datetime" Nullable="false" />
+          <Property Name="contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VisitingPurpose" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ClinicEmployee_Employeedesignation">
+          <End Role="Employeedesignation" Type="Self.Employeedesignation" Multiplicity="1" />
+          <End Role="ClinicEmployee" Type="Self.ClinicEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employeedesignation">
+              <PropertyRef Name="EmployeeDesignationId" />
+            </Principal>
+            <Dependent Role="ClinicEmployee">
+              <PropertyRef Name="EmployeeDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClinicEmployee_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="ClinicEmployee" Type="Self.ClinicEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="ClinicEmployee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diseases_DiseasesInvestigation">
+          <End Role="DiseasesInvestigation" Type="Self.DiseasesInvestigation" Multiplicity="1" />
+          <End Role="Diseases" Type="Self.Diseases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiseasesInvestigation">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Principal>
+            <Dependent Role="Diseases">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesInvestigation_DisesesClinicalFeature">
+          <End Role="DisesesClinicalFeature" Type="Self.DisesesClinicalFeature" Multiplicity="1" />
+          <End Role="DiseasesInvestigation" Type="Self.DiseasesInvestigation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisesesClinicalFeature">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Principal>
+            <Dependent Role="DiseasesInvestigation">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesManagement_Diseases">
+          <End Role="Diseases" Type="Self.Diseases" Multiplicity="1" />
+          <End Role="DiseasesManagement" Type="Self.DiseasesManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diseases">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="DiseasesManagement">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesManagement_DiseasesInvestigation">
+          <End Role="DiseasesInvestigation" Type="Self.DiseasesInvestigation" Multiplicity="1" />
+          <End Role="DiseasesManagement" Type="Self.DiseasesManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiseasesInvestigation">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Principal>
+            <Dependent Role="DiseasesManagement">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesManagement_DisesesClinicalFeature">
+          <End Role="DisesesClinicalFeature" Type="Self.DisesesClinicalFeature" Multiplicity="1" />
+          <End Role="DiseasesManagement" Type="Self.DiseasesManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisesesClinicalFeature">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Principal>
+            <Dependent Role="DiseasesManagement">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctors_DoctorsDesignations">
+          <End Role="DoctorsDesignations" Type="Self.DoctorsDesignations" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorsDesignations">
+              <PropertyRef Name="DoctorDesignationId" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="DessignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctors_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DrugBrand_DrugGeneric">
+          <End Role="DrugGeneric" Type="Self.DrugGeneric" Multiplicity="1" />
+          <End Role="DrugBrand" Type="Self.DrugBrand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugGeneric">
+              <PropertyRef Name="GenericId" />
+            </Principal>
+            <Dependent Role="DrugBrand">
+              <PropertyRef Name="GenericId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DrugDetails_DrugGeneric">
+          <End Role="DrugGeneric" Type="Self.DrugGeneric" Multiplicity="1" />
+          <End Role="DrugDetails" Type="Self.DrugDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugGeneric">
+              <PropertyRef Name="GenericId" />
+            </Principal>
+            <Dependent Role="DrugDetails">
+              <PropertyRef Name="GenericId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Diseases">
+          <End Role="Diseases" Type="Self.Diseases" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diseases">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCondition_Diseases">
+          <End Role="Diseases" Type="Self.Diseases" Multiplicity="1" />
+          <End Role="PatientCondition" Type="Self.PatientCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diseases">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="PatientCondition">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCondition_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PatientCondition" Type="Self.PatientCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PatientCondition">
+              <PropertyRef Name="PatienId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCondition_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="PatientCondition" Type="Self.PatientCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="PatientCondition">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientShedule_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PatientShedule" Type="Self.PatientShedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PatientShedule">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientsMedicalHistory_Diseases">
+          <End Role="Diseases" Type="Self.Diseases" Multiplicity="1" />
+          <End Role="PatientsMedicalHistory" Type="Self.PatientsMedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diseases">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="PatientsMedicalHistory">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientsMedicalHistory_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PatientsMedicalHistory" Type="Self.PatientsMedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PatientsMedicalHistory">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentMethod_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PaymentMethod">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentMethod_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="PaymentMethod">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DENTALERPModelStoreContainer">
+          <EntitySet Name="ClincDescription" EntityType="Self.ClincDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClinicAccounts" EntityType="Self.ClinicAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClinicalAccessories" EntityType="Self.ClinicalAccessories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClinicalInstrument" EntityType="Self.ClinicalInstrument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClinicEmployee" EntityType="Self.ClinicEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClinicEstablishment" EntityType="Self.ClinicEstablishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diseases" EntityType="Self.Diseases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiseasesInvestigation" EntityType="Self.DiseasesInvestigation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiseasesManagement" EntityType="Self.DiseasesManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisesesClinicalFeature" EntityType="Self.DisesesClinicalFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoctorsDesignations" EntityType="Self.DoctorsDesignations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrugBrand" EntityType="Self.DrugBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrugDetails" EntityType="Self.DrugDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrugGeneric" EntityType="Self.DrugGeneric" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employeedesignation" EntityType="Self.Employeedesignation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientCondition" EntityType="Self.PatientCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientShedule" EntityType="Self.PatientShedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientsMedicalHistory" EntityType="Self.PatientsMedicalHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RowMatrial" EntityType="Self.RowMatrial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TodaysPatientstatus" EntityType="Self.TodaysPatientstatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClinicEmployee_Employeedesignation" Association="Self.FK_ClinicEmployee_Employeedesignation">
+            <End Role="Employeedesignation" EntitySet="Employeedesignation" />
+            <End Role="ClinicEmployee" EntitySet="ClinicEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClinicEmployee_Gender" Association="Self.FK_ClinicEmployee_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="ClinicEmployee" EntitySet="ClinicEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diseases_DiseasesInvestigation" Association="Self.FK_Diseases_DiseasesInvestigation">
+            <End Role="DiseasesInvestigation" EntitySet="DiseasesInvestigation" />
+            <End Role="Diseases" EntitySet="Diseases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesInvestigation_DisesesClinicalFeature" Association="Self.FK_DiseasesInvestigation_DisesesClinicalFeature">
+            <End Role="DisesesClinicalFeature" EntitySet="DisesesClinicalFeature" />
+            <End Role="DiseasesInvestigation" EntitySet="DiseasesInvestigation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesManagement_Diseases" Association="Self.FK_DiseasesManagement_Diseases">
+            <End Role="Diseases" EntitySet="Diseases" />
+            <End Role="DiseasesManagement" EntitySet="DiseasesManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesManagement_DiseasesInvestigation" Association="Self.FK_DiseasesManagement_DiseasesInvestigation">
+            <End Role="DiseasesInvestigation" EntitySet="DiseasesInvestigation" />
+            <End Role="DiseasesManagement" EntitySet="DiseasesManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesManagement_DisesesClinicalFeature" Association="Self.FK_DiseasesManagement_DisesesClinicalFeature">
+            <End Role="DisesesClinicalFeature" EntitySet="DisesesClinicalFeature" />
+            <End Role="DiseasesManagement" EntitySet="DiseasesManagement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctors_DoctorsDesignations" Association="Self.FK_Doctors_DoctorsDesignations">
+            <End Role="DoctorsDesignations" EntitySet="DoctorsDesignations" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctors_Gender" Association="Self.FK_Doctors_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DrugBrand_DrugGeneric" Association="Self.FK_DrugBrand_DrugGeneric">
+            <End Role="DrugGeneric" EntitySet="DrugGeneric" />
+            <End Role="DrugBrand" EntitySet="DrugBrand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DrugDetails_DrugGeneric" Association="Self.FK_DrugDetails_DrugGeneric">
+            <End Role="DrugGeneric" EntitySet="DrugGeneric" />
+            <End Role="DrugDetails" EntitySet="DrugDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Diseases" Association="Self.FK_Patient_Diseases">
+            <End Role="Diseases" EntitySet="Diseases" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Gender" Association="Self.FK_Patient_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCondition_Diseases" Association="Self.FK_PatientCondition_Diseases">
+            <End Role="Diseases" EntitySet="Diseases" />
+            <End Role="PatientCondition" EntitySet="PatientCondition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCondition_Patient" Association="Self.FK_PatientCondition_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PatientCondition" EntitySet="PatientCondition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCondition_Service" Association="Self.FK_PatientCondition_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="PatientCondition" EntitySet="PatientCondition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientShedule_Patient" Association="Self.FK_PatientShedule_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PatientShedule" EntitySet="PatientShedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientsMedicalHistory_Diseases" Association="Self.FK_PatientsMedicalHistory_Diseases">
+            <End Role="Diseases" EntitySet="Diseases" />
+            <End Role="PatientsMedicalHistory" EntitySet="PatientsMedicalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientsMedicalHistory_Patient" Association="Self.FK_PatientsMedicalHistory_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PatientsMedicalHistory" EntitySet="PatientsMedicalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentMethod_Patient" Association="Self.FK_PaymentMethod_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentMethod_Service" Association="Self.FK_PaymentMethod_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DENTALERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DENTALERPDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DrugDetails" EntityType="DENTALERPModel.DrugDetail" />
+          <EntitySet Name="DrugGenerics" EntityType="DENTALERPModel.DrugGeneric" />
+          <AssociationSet Name="FK_DrugDetails_DrugGeneric" Association="DENTALERPModel.FK_DrugDetails_DrugGeneric">
+            <End Role="DrugGeneric" EntitySet="DrugGenerics" />
+            <End Role="DrugDetail" EntitySet="DrugDetails" />
+          </AssociationSet>
+          <EntitySet Name="DrugBrands" EntityType="DENTALERPModel.DrugBrand" />
+          <AssociationSet Name="FK_DrugBrand_DrugGeneric" Association="DENTALERPModel.FK_DrugBrand_DrugGeneric">
+            <End Role="DrugGeneric" EntitySet="DrugGenerics" />
+            <End Role="DrugBrand" EntitySet="DrugBrands" />
+          </AssociationSet>
+          <EntitySet Name="DiseasesInvestigations" EntityType="DENTALERPModel.DiseasesInvestigation" />
+          <EntitySet Name="DiseasesManagements" EntityType="DENTALERPModel.DiseasesManagement" />
+          <EntitySet Name="DisesesClinicalFeatures" EntityType="DENTALERPModel.DisesesClinicalFeature" />
+          <AssociationSet Name="FK_DiseasesInvestigation_DisesesClinicalFeature" Association="DENTALERPModel.FK_DiseasesInvestigation_DisesesClinicalFeature">
+            <End Role="DisesesClinicalFeature" EntitySet="DisesesClinicalFeatures" />
+            <End Role="DiseasesInvestigation" EntitySet="DiseasesInvestigations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesManagement_DiseasesInvestigation" Association="DENTALERPModel.FK_DiseasesManagement_DiseasesInvestigation">
+            <End Role="DiseasesInvestigation" EntitySet="DiseasesInvestigations" />
+            <End Role="DiseasesManagement" EntitySet="DiseasesManagements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesManagement_DisesesClinicalFeature" Association="DENTALERPModel.FK_DiseasesManagement_DisesesClinicalFeature">
+            <End Role="DisesesClinicalFeature" EntitySet="DisesesClinicalFeatures" />
+            <End Role="DiseasesManagement" EntitySet="DiseasesManagements" />
+          </AssociationSet>
+          <EntitySet Name="Genders" EntityType="DENTALERPModel.Gender" />
+          <EntitySet Name="Services" EntityType="DENTALERPModel.Service" />
+          <EntitySet Name="PatientsMedicalHistories" EntityType="DENTALERPModel.PatientsMedicalHistory" />
+          <EntitySet Name="PatientConditions" EntityType="DENTALERPModel.PatientCondition" />
+          <AssociationSet Name="FK_PatientCondition_Service" Association="DENTALERPModel.FK_PatientCondition_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="PatientCondition" EntitySet="PatientConditions" />
+          </AssociationSet>
+          <EntitySet Name="Diseases" EntityType="DENTALERPModel.Disease" />
+          <AssociationSet Name="FK_Diseases_DiseasesInvestigation" Association="DENTALERPModel.FK_Diseases_DiseasesInvestigation">
+            <End Role="DiseasesInvestigation" EntitySet="DiseasesInvestigations" />
+            <End Role="Disease" EntitySet="Diseases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseasesManagement_Diseases" Association="DENTALERPModel.FK_DiseasesManagement_Diseases">
+            <End Role="Disease" EntitySet="Diseases" />
+            <End Role="DiseasesManagement" EntitySet="DiseasesManagements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCondition_Diseases" Association="DENTALERPModel.FK_PatientCondition_Diseases">
+            <End Role="Disease" EntitySet="Diseases" />
+            <End Role="PatientCondition" EntitySet="PatientConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientsMedicalHistory_Diseases" Association="DENTALERPModel.FK_PatientsMedicalHistory_Diseases">
+            <End Role="Disease" EntitySet="Diseases" />
+            <End Role="PatientsMedicalHistory" EntitySet="PatientsMedicalHistories" />
+          </AssociationSet>
+          <EntitySet Name="TodaysPatientstatus" EntityType="DENTALERPModel.TodaysPatientstatu" />
+          <EntitySet Name="Doctors" EntityType="DENTALERPModel.Doctor" />
+          <EntitySet Name="DoctorsDesignations" EntityType="DENTALERPModel.DoctorsDesignation" />
+          <AssociationSet Name="FK_Doctors_DoctorsDesignations" Association="DENTALERPModel.FK_Doctors_DoctorsDesignations">
+            <End Role="DoctorsDesignation" EntitySet="DoctorsDesignations" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctors_Gender" Association="DENTALERPModel.FK_Doctors_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <EntitySet Name="ClinicEmployees" EntityType="DENTALERPModel.ClinicEmployee" />
+          <EntitySet Name="Employeedesignations" EntityType="DENTALERPModel.Employeedesignation" />
+          <AssociationSet Name="FK_ClinicEmployee_Employeedesignation" Association="DENTALERPModel.FK_ClinicEmployee_Employeedesignation">
+            <End Role="Employeedesignation" EntitySet="Employeedesignations" />
+            <End Role="ClinicEmployee" EntitySet="ClinicEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClinicEmployee_Gender" Association="DENTALERPModel.FK_ClinicEmployee_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="ClinicEmployee" EntitySet="ClinicEmployees" />
+          </AssociationSet>
+          <EntitySet Name="ClincDescriptions" EntityType="DENTALERPModel.ClincDescription" />
+          <EntitySet Name="ClinicalInstruments" EntityType="DENTALERPModel.ClinicalInstrument" />
+          <EntitySet Name="ClinicalAccessories" EntityType="DENTALERPModel.ClinicalAccessory" />
+          <EntitySet Name="RowMatrials" EntityType="DENTALERPModel.RowMatrial" />
+          <EntitySet Name="ClinicAccounts" EntityType="DENTALERPModel.ClinicAccount" />
+          <EntitySet Name="ClinicEstablishments" EntityType="DENTALERPModel.ClinicEstablishment" />
+          <EntitySet Name="Patients" EntityType="DENTALERPModel.Patient" />
+          <AssociationSet Name="FK_Patient_Diseases" Association="DENTALERPModel.FK_Patient_Diseases">
+            <End Role="Disease" EntitySet="Diseases" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Gender" Association="DENTALERPModel.FK_Patient_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCondition_Patient" Association="DENTALERPModel.FK_PatientCondition_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PatientCondition" EntitySet="PatientConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientsMedicalHistory_Patient" Association="DENTALERPModel.FK_PatientsMedicalHistory_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PatientsMedicalHistory" EntitySet="PatientsMedicalHistories" />
+          </AssociationSet>
+          <EntitySet Name="PatientShedules" EntityType="DENTALERPModel.PatientShedule" />
+          <AssociationSet Name="FK_PatientShedule_Patient" Association="DENTALERPModel.FK_PatientShedule_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PatientShedule" EntitySet="PatientShedules" />
+          </AssociationSet>
+          <EntitySet Name="PaymentMethods" EntityType="DENTALERPModel.PaymentMethod" />
+          <AssociationSet Name="FK_PaymentMethod_Patient" Association="DENTALERPModel.FK_PaymentMethod_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentMethod_Service" Association="DENTALERPModel.FK_PaymentMethod_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DrugDetail">
+          <Key>
+            <PropertyRef Name="DrugDetailId" />
+          </Key>
+          <Property Name="DrugDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Indication" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dosage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contraindication" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SideEffect" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UseInPregnency" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UseInLactation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DrugInteraction" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Precaution" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mechanism" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="GenericId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DrugGeneric" Relationship="DENTALERPModel.FK_DrugDetails_DrugGeneric" FromRole="DrugDetail" ToRole="DrugGeneric" />
+        </EntityType>
+        <EntityType Name="DrugGeneric">
+          <Key>
+            <PropertyRef Name="GenericId" />
+          </Key>
+          <Property Name="GenericId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DrugDetails" Relationship="DENTALERPModel.FK_DrugDetails_DrugGeneric" FromRole="DrugGeneric" ToRole="DrugDetail" />
+          <NavigationProperty Name="DrugBrands" Relationship="DENTALERPModel.FK_DrugBrand_DrugGeneric" FromRole="DrugGeneric" ToRole="DrugBrand" />
+        </EntityType>
+        <Association Name="FK_DrugDetails_DrugGeneric">
+          <End Type="DENTALERPModel.DrugGeneric" Role="DrugGeneric" Multiplicity="1" />
+          <End Type="DENTALERPModel.DrugDetail" Role="DrugDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugGeneric">
+              <PropertyRef Name="GenericId" />
+            </Principal>
+            <Dependent Role="DrugDetail">
+              <PropertyRef Name="GenericId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DrugBrand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Preparation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="GenericId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DrugGeneric" Relationship="DENTALERPModel.FK_DrugBrand_DrugGeneric" FromRole="DrugBrand" ToRole="DrugGeneric" />
+        </EntityType>
+        <Association Name="FK_DrugBrand_DrugGeneric">
+          <End Type="DENTALERPModel.DrugGeneric" Role="DrugGeneric" Multiplicity="1" />
+          <End Type="DENTALERPModel.DrugBrand" Role="DrugBrand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugGeneric">
+              <PropertyRef Name="GenericId" />
+            </Principal>
+            <Dependent Role="DrugBrand">
+              <PropertyRef Name="GenericId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DiseasesInvestigation">
+          <Key>
+            <PropertyRef Name="DiseasesInvestigationId" />
+          </Key>
+          <Property Name="DiseasesInvestigationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ClinicalFeatureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DisesesClinicalFeature" Relationship="DENTALERPModel.FK_DiseasesInvestigation_DisesesClinicalFeature" FromRole="DiseasesInvestigation" ToRole="DisesesClinicalFeature" />
+          <NavigationProperty Name="DiseasesManagements" Relationship="DENTALERPModel.FK_DiseasesManagement_DiseasesInvestigation" FromRole="DiseasesInvestigation" ToRole="DiseasesManagement" />
+          <NavigationProperty Name="Diseases" Relationship="DENTALERPModel.FK_Diseases_DiseasesInvestigation" FromRole="DiseasesInvestigation" ToRole="Disease" />
+        </EntityType>
+        <EntityType Name="DiseasesManagement">
+          <Key>
+            <PropertyRef Name="DiseasesManagementId" />
+          </Key>
+          <Property Name="DiseasesManagementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagementProcess" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prognosis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DiseasesId" Type="Int32" Nullable="false" />
+          <Property Name="DiseasesInvestigationId" Type="Int32" Nullable="false" />
+          <Property Name="ClinicalFeatureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DiseasesInvestigation" Relationship="DENTALERPModel.FK_DiseasesManagement_DiseasesInvestigation" FromRole="DiseasesManagement" ToRole="DiseasesInvestigation" />
+          <NavigationProperty Name="DisesesClinicalFeature" Relationship="DENTALERPModel.FK_DiseasesManagement_DisesesClinicalFeature" FromRole="DiseasesManagement" ToRole="DisesesClinicalFeature" />
+          <NavigationProperty Name="Disease" Relationship="DENTALERPModel.FK_DiseasesManagement_Diseases" FromRole="DiseasesManagement" ToRole="Disease" />
+        </EntityType>
+        <EntityType Name="DisesesClinicalFeature">
+          <Key>
+            <PropertyRef Name="ClinicalFeatureId" />
+          </Key>
+          <Property Name="ClinicalFeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Symptom" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sign" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DiseasesInvestigations" Relationship="DENTALERPModel.FK_DiseasesInvestigation_DisesesClinicalFeature" FromRole="DisesesClinicalFeature" ToRole="DiseasesInvestigation" />
+          <NavigationProperty Name="DiseasesManagements" Relationship="DENTALERPModel.FK_DiseasesManagement_DisesesClinicalFeature" FromRole="DisesesClinicalFeature" ToRole="DiseasesManagement" />
+        </EntityType>
+        <Association Name="FK_DiseasesInvestigation_DisesesClinicalFeature">
+          <End Type="DENTALERPModel.DisesesClinicalFeature" Role="DisesesClinicalFeature" Multiplicity="1" />
+          <End Type="DENTALERPModel.DiseasesInvestigation" Role="DiseasesInvestigation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisesesClinicalFeature">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Principal>
+            <Dependent Role="DiseasesInvestigation">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesManagement_DiseasesInvestigation">
+          <End Type="DENTALERPModel.DiseasesInvestigation" Role="DiseasesInvestigation" Multiplicity="1" />
+          <End Type="DENTALERPModel.DiseasesManagement" Role="DiseasesManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiseasesInvestigation">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Principal>
+            <Dependent Role="DiseasesManagement">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesManagement_DisesesClinicalFeature">
+          <End Type="DENTALERPModel.DisesesClinicalFeature" Role="DisesesClinicalFeature" Multiplicity="1" />
+          <End Type="DENTALERPModel.DiseasesManagement" Role="DiseasesManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisesesClinicalFeature">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Principal>
+            <Dependent Role="DiseasesManagement">
+              <PropertyRef Name="ClinicalFeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="DENTALERPModel.FK_Doctors_Gender" FromRole="Gender" ToRole="Doctor" />
+          <NavigationProperty Name="ClinicEmployees" Relationship="DENTALERPModel.FK_ClinicEmployee_Gender" FromRole="Gender" ToRole="ClinicEmployee" />
+          <NavigationProperty Name="Patients" Relationship="DENTALERPModel.FK_Patient_Gender" FromRole="Gender" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TreatmentCost" Type="Int32" Nullable="false" />
+          <Property Name="TimesOfVisit" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PatientConditions" Relationship="DENTALERPModel.FK_PatientCondition_Service" FromRole="Service" ToRole="PatientCondition" />
+          <NavigationProperty Name="PaymentMethods" Relationship="DENTALERPModel.FK_PaymentMethod_Service" FromRole="Service" ToRole="PaymentMethod" />
+        </EntityType>
+        <EntityType Name="PatientsMedicalHistory">
+          <Key>
+            <PropertyRef Name="PatientHistoryId" />
+          </Key>
+          <Property Name="PatientHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiseasesId" Type="Int32" Nullable="false" />
+          <Property Name="VitalSign" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Medicalhistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Disease" Relationship="DENTALERPModel.FK_PatientsMedicalHistory_Diseases" FromRole="PatientsMedicalHistory" ToRole="Disease" />
+          <NavigationProperty Name="Patient" Relationship="DENTALERPModel.FK_PatientsMedicalHistory_Patient" FromRole="PatientsMedicalHistory" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="PatientCondition">
+          <Key>
+            <PropertyRef Name="PatientConditionId" />
+          </Key>
+          <Property Name="PatientConditionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Beforetreatment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AfterTreatment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Createddate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="PatienId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="DiseasesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="DENTALERPModel.FK_PatientCondition_Service" FromRole="PatientCondition" ToRole="Service" />
+          <NavigationProperty Name="Disease" Relationship="DENTALERPModel.FK_PatientCondition_Diseases" FromRole="PatientCondition" ToRole="Disease" />
+          <NavigationProperty Name="Patient" Relationship="DENTALERPModel.FK_PatientCondition_Patient" FromRole="PatientCondition" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_PatientCondition_Service">
+          <End Type="DENTALERPModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="DENTALERPModel.PatientCondition" Role="PatientCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="PatientCondition">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Disease">
+          <Key>
+            <PropertyRef Name="DiseasesId" />
+          </Key>
+          <Property Name="DiseasesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aetiology" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pathophysiology" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DiseasesInvestigationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DiseasesInvestigation" Relationship="DENTALERPModel.FK_Diseases_DiseasesInvestigation" FromRole="Disease" ToRole="DiseasesInvestigation" />
+          <NavigationProperty Name="DiseasesManagements" Relationship="DENTALERPModel.FK_DiseasesManagement_Diseases" FromRole="Disease" ToRole="DiseasesManagement" />
+          <NavigationProperty Name="PatientConditions" Relationship="DENTALERPModel.FK_PatientCondition_Diseases" FromRole="Disease" ToRole="PatientCondition" />
+          <NavigationProperty Name="PatientsMedicalHistories" Relationship="DENTALERPModel.FK_PatientsMedicalHistory_Diseases" FromRole="Disease" ToRole="PatientsMedicalHistory" />
+          <NavigationProperty Name="Patients" Relationship="DENTALERPModel.FK_Patient_Diseases" FromRole="Disease" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_Diseases_DiseasesInvestigation">
+          <End Type="DENTALERPModel.DiseasesInvestigation" Role="DiseasesInvestigation" Multiplicity="1" />
+          <End Type="DENTALERPModel.Disease" Role="Disease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiseasesInvestigation">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Principal>
+            <Dependent Role="Disease">
+              <PropertyRef Name="DiseasesInvestigationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseasesManagement_Diseases">
+          <End Type="DENTALERPModel.Disease" Role="Disease" Multiplicity="1" />
+          <End Type="DENTALERPModel.DiseasesManagement" Role="DiseasesManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disease">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="DiseasesManagement">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCondition_Diseases">
+          <End Type="DENTALERPModel.Disease" Role="Disease" Multiplicity="1" />
+          <End Type="DENTALERPModel.PatientCondition" Role="PatientCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disease">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="PatientCondition">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientsMedicalHistory_Diseases">
+          <End Type="DENTALERPModel.Disease" Role="Disease" Multiplicity="1" />
+          <End Type="DENTALERPModel.PatientsMedicalHistory" Role="PatientsMedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disease">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="PatientsMedicalHistory">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TodaysPatientstatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PatientStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNo" Type="Int32" />
+          <Property Name="visitingtime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VisitingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VisitingPurpose" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="DoctorId" />
+          </Key>
+          <Property Name="DoctorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacebookId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="DessignationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DoctorsDesignation" Relationship="DENTALERPModel.FK_Doctors_DoctorsDesignations" FromRole="Doctor" ToRole="DoctorsDesignation" />
+          <NavigationProperty Name="Gender" Relationship="DENTALERPModel.FK_Doctors_Gender" FromRole="Doctor" ToRole="Gender" />
+        </EntityType>
+        <EntityType Name="DoctorsDesignation">
+          <Key>
+            <PropertyRef Name="DoctorDesignationId" />
+          </Key>
+          <Property Name="DoctorDesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesignationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="DENTALERPModel.FK_Doctors_DoctorsDesignations" FromRole="DoctorsDesignation" ToRole="Doctor" />
+        </EntityType>
+        <Association Name="FK_Doctors_DoctorsDesignations">
+          <End Type="DENTALERPModel.DoctorsDesignation" Role="DoctorsDesignation" Multiplicity="1" />
+          <End Type="DENTALERPModel.Doctor" Role="Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorsDesignation">
+              <PropertyRef Name="DoctorDesignationId" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="DessignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctors_Gender">
+          <End Type="DENTALERPModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DENTALERPModel.Doctor" Role="Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClinicEmployee">
+          <Key>
+            <PropertyRef Name="ClinicEmployeeId" />
+          </Key>
+          <Property Name="ClinicEmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeDesignationId" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employeedesignation" Relationship="DENTALERPModel.FK_ClinicEmployee_Employeedesignation" FromRole="ClinicEmployee" ToRole="Employeedesignation" />
+          <NavigationProperty Name="Gender" Relationship="DENTALERPModel.FK_ClinicEmployee_Gender" FromRole="ClinicEmployee" ToRole="Gender" />
+        </EntityType>
+        <EntityType Name="Employeedesignation">
+          <Key>
+            <PropertyRef Name="EmployeeDesignationId" />
+          </Key>
+          <Property Name="EmployeeDesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesinationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ClinicEmployees" Relationship="DENTALERPModel.FK_ClinicEmployee_Employeedesignation" FromRole="Employeedesignation" ToRole="ClinicEmployee" />
+        </EntityType>
+        <Association Name="FK_ClinicEmployee_Employeedesignation">
+          <End Type="DENTALERPModel.Employeedesignation" Role="Employeedesignation" Multiplicity="1" />
+          <End Type="DENTALERPModel.ClinicEmployee" Role="ClinicEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employeedesignation">
+              <PropertyRef Name="EmployeeDesignationId" />
+            </Principal>
+            <Dependent Role="ClinicEmployee">
+              <PropertyRef Name="EmployeeDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClinicEmployee_Gender">
+          <End Type="DENTALERPModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DENTALERPModel.ClinicEmployee" Role="ClinicEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="ClinicEmployee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClincDescription">
+          <Key>
+            <PropertyRef Name="ClinicDescriptionId" />
+          </Key>
+          <Property Name="ClinicDescriptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClinicType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClinicContact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="websilte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClinicMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicalInstrument">
+          <Key>
+            <PropertyRef Name="InstrumentId" />
+          </Key>
+          <Property Name="InstrumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Market" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicalAccessory">
+          <Key>
+            <PropertyRef Name="AccessoriesId" />
+          </Key>
+          <Property Name="AccessoriesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MarketCost" Type="Int32" />
+          <Property Name="StockAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RowMatrial">
+          <Key>
+            <PropertyRef Name="RowMaterialId" />
+          </Key>
+          <Property Name="RowMaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicAccount">
+          <Key>
+            <PropertyRef Name="ClinicAccountId" />
+          </Key>
+          <Property Name="ClinicAccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Income" Type="Int32" Nullable="false" />
+          <Property Name="OutCome" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DayTotalIncome" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="TotalIncome" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClinicEstablishment">
+          <Key>
+            <PropertyRef Name="EstablishmentId" />
+          </Key>
+          <Property Name="EstablishmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClinicHouseCharge" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeCost" Type="Int32" Nullable="false" />
+          <Property Name="ElectricityBill" Type="Int32" Nullable="false" />
+          <Property Name="RowmaterialCost" Type="Int32" Nullable="false" />
+          <Property Name="InstrumentServiceCost" Type="Int32" Nullable="false" />
+          <Property Name="TotalCharge" Type="Int32" Nullable="false" />
+          <Property Name="Vat" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="VisitingtDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="Int32" />
+          <Property Name="AppionmentDate" Type="DateTime" Precision="3" />
+          <Property Name="CallingDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="DiseasesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Disease" Relationship="DENTALERPModel.FK_Patient_Diseases" FromRole="Patient" ToRole="Disease" />
+          <NavigationProperty Name="Gender" Relationship="DENTALERPModel.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
+          <NavigationProperty Name="PatientConditions" Relationship="DENTALERPModel.FK_PatientCondition_Patient" FromRole="Patient" ToRole="PatientCondition" />
+          <NavigationProperty Name="PatientsMedicalHistories" Relationship="DENTALERPModel.FK_PatientsMedicalHistory_Patient" FromRole="Patient" ToRole="PatientsMedicalHistory" />
+          <NavigationProperty Name="PatientShedules" Relationship="DENTALERPModel.FK_PatientShedule_Patient" FromRole="Patient" ToRole="PatientShedule" />
+          <NavigationProperty Name="PaymentMethods" Relationship="DENTALERPModel.FK_PaymentMethod_Patient" FromRole="Patient" ToRole="PaymentMethod" />
+        </EntityType>
+        <Association Name="FK_Patient_Diseases">
+          <End Type="DENTALERPModel.Disease" Role="Disease" Multiplicity="1" />
+          <End Type="DENTALERPModel.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disease">
+              <PropertyRef Name="DiseasesId" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="DiseasesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Gender">
+          <End Type="DENTALERPModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DENTALERPModel.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCondition_Patient">
+          <End Type="DENTALERPModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="DENTALERPModel.PatientCondition" Role="PatientCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PatientCondition">
+              <PropertyRef Name="PatienId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientsMedicalHistory_Patient">
+          <End Type="DENTALERPModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="DENTALERPModel.PatientsMedicalHistory" Role="PatientsMedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PatientsMedicalHistory">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PatientShedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="PatientCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PataientType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VisitingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VisitingPurpose" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serialNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="DENTALERPModel.FK_PatientShedule_Patient" FromRole="PatientShedule" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_PatientShedule_Patient">
+          <End Type="DENTALERPModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="DENTALERPModel.PatientShedule" Role="PatientShedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PatientShedule">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="DiscountAmount" Type="Int32" Nullable="false" />
+          <Property Name="Charge" Type="Int32" Nullable="false" />
+          <Property Name="TotalCharge" Type="Int32" Nullable="false" />
+          <Property Name="Paid" Type="Int32" Nullable="false" />
+          <Property Name="Due" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastPaidDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Patient" Relationship="DENTALERPModel.FK_PaymentMethod_Patient" FromRole="PaymentMethod" ToRole="Patient" />
+          <NavigationProperty Name="Service" Relationship="DENTALERPModel.FK_PaymentMethod_Service" FromRole="PaymentMethod" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_PaymentMethod_Patient">
+          <End Type="DENTALERPModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="DENTALERPModel.PaymentMethod" Role="PaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="PaymentMethod">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentMethod_Service">
+          <End Type="DENTALERPModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="DENTALERPModel.PaymentMethod" Role="PaymentMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="PaymentMethod">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DENTALERPModelStoreContainer" CdmEntityContainer="DENTALERPDbContext">
+          <EntitySetMapping Name="DrugDetails">
+            <EntityTypeMapping TypeName="DENTALERPModel.DrugDetail">
+              <MappingFragment StoreEntitySet="DrugDetails">
+                <ScalarProperty Name="GenericId" ColumnName="GenericId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Mechanism" ColumnName="Mechanism" />
+                <ScalarProperty Name="Precaution" ColumnName="Precaution" />
+                <ScalarProperty Name="DrugInteraction" ColumnName="DrugInteraction" />
+                <ScalarProperty Name="UseInLactation" ColumnName="UseInLactation" />
+                <ScalarProperty Name="UseInPregnency" ColumnName="UseInPregnency" />
+                <ScalarProperty Name="SideEffect" ColumnName="SideEffect" />
+                <ScalarProperty Name="Contraindication" ColumnName="Contraindication" />
+                <ScalarProperty Name="Dosage" ColumnName="Dosage" />
+                <ScalarProperty Name="Indication" ColumnName="Indication" />
+                <ScalarProperty Name="DrugDetailId" ColumnName="DrugDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrugGenerics">
+            <EntityTypeMapping TypeName="DENTALERPModel.DrugGeneric">
+              <MappingFragment StoreEntitySet="DrugGeneric">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GenericId" ColumnName="GenericId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrugBrands">
+            <EntityTypeMapping TypeName="DENTALERPModel.DrugBrand">
+              <MappingFragment StoreEntitySet="DrugBrand">
+                <ScalarProperty Name="GenericId" ColumnName="GenericId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Preparation" ColumnName="Preparation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiseasesInvestigations">
+            <EntityTypeMapping TypeName="DENTALERPModel.DiseasesInvestigation">
+              <MappingFragment StoreEntitySet="DiseasesInvestigation">
+                <ScalarProperty Name="ClinicalFeatureId" ColumnName="ClinicalFeatureId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DiseasesInvestigationId" ColumnName="DiseasesInvestigationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiseasesManagements">
+            <EntityTypeMapping TypeName="DENTALERPModel.DiseasesManagement">
+              <MappingFragment StoreEntitySet="DiseasesManagement">
+                <ScalarProperty Name="ClinicalFeatureId" ColumnName="ClinicalFeatureId" />
+                <ScalarProperty Name="DiseasesInvestigationId" ColumnName="DiseasesInvestigationId" />
+                <ScalarProperty Name="DiseasesId" ColumnName="DiseasesId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Prognosis" ColumnName="Prognosis" />
+                <ScalarProperty Name="ManagementProcess" ColumnName="ManagementProcess" />
+                <ScalarProperty Name="DiseasesManagementId" ColumnName="DiseasesManagementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DisesesClinicalFeatures">
+            <EntityTypeMapping TypeName="DENTALERPModel.DisesesClinicalFeature">
+              <MappingFragment StoreEntitySet="DisesesClinicalFeature">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+                <ScalarProperty Name="ClinicalFeatureId" ColumnName="ClinicalFeatureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="DENTALERPModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="DENTALERPModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TimesOfVisit" ColumnName="TimesOfVisit" />
+                <ScalarProperty Name="TreatmentCost" ColumnName="TreatmentCost" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientsMedicalHistories">
+            <EntityTypeMapping TypeName="DENTALERPModel.PatientsMedicalHistory">
+              <MappingFragment StoreEntitySet="PatientsMedicalHistory">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Medicalhistory" ColumnName="Medicalhistory" />
+                <ScalarProperty Name="VitalSign" ColumnName="VitalSign" />
+                <ScalarProperty Name="DiseasesId" ColumnName="DiseasesId" />
+                <ScalarProperty Name="PatientHistoryId" ColumnName="PatientHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientConditions">
+            <EntityTypeMapping TypeName="DENTALERPModel.PatientCondition">
+              <MappingFragment StoreEntitySet="PatientCondition">
+                <ScalarProperty Name="DiseasesId" ColumnName="DiseasesId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="PatienId" ColumnName="PatienId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="AfterTreatment" ColumnName="AfterTreatment" />
+                <ScalarProperty Name="Beforetreatment" ColumnName="Beforetreatment" />
+                <ScalarProperty Name="PatientConditionId" ColumnName="PatientConditionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diseases">
+            <EntityTypeMapping TypeName="DENTALERPModel.Disease">
+              <MappingFragment StoreEntitySet="Diseases">
+                <ScalarProperty Name="DiseasesInvestigationId" ColumnName="DiseasesInvestigationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Pathophysiology" ColumnName="Pathophysiology" />
+                <ScalarProperty Name="Aetiology" ColumnName="Aetiology" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DiseasesId" ColumnName="DiseasesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TodaysPatientstatus">
+            <EntityTypeMapping TypeName="DENTALERPModel.TodaysPatientstatu">
+              <MappingFragment StoreEntitySet="TodaysPatientstatus">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="VisitingPurpose" ColumnName="VisitingPurpose" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="VisitingDate" ColumnName="VisitingDate" />
+                <ScalarProperty Name="visitingtime" ColumnName="visitingtime" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="PatientStatus" ColumnName="PatientStatus" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="DENTALERPModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="DessignationId" ColumnName="DessignationId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorsDesignations">
+            <EntityTypeMapping TypeName="DENTALERPModel.DoctorsDesignation">
+              <MappingFragment StoreEntitySet="DoctorsDesignations">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="DoctorDesignationId" ColumnName="DoctorDesignationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClinicEmployees">
+            <EntityTypeMapping TypeName="DENTALERPModel.ClinicEmployee">
+              <MappingFragment StoreEntitySet="ClinicEmployee">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="EmployeeDesignationId" ColumnName="EmployeeDesignationId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClinicEmployeeId" ColumnName="ClinicEmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employeedesignations">
+            <EntityTypeMapping TypeName="DENTALERPModel.Employeedesignation">
+              <MappingFragment StoreEntitySet="Employeedesignation">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DesinationName" ColumnName="DesinationName" />
+                <ScalarProperty Name="EmployeeDesignationId" ColumnName="EmployeeDesignationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClincDescriptions">
+            <EntityTypeMapping TypeName="DENTALERPModel.ClincDescription">
+              <MappingFragment StoreEntitySet="ClincDescription">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ClinicMail" ColumnName="ClinicMail" />
+                <ScalarProperty Name="websilte" ColumnName="websilte" />
+                <ScalarProperty Name="ClinicContact" ColumnName="ClinicContact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ClinicType" ColumnName="ClinicType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClinicDescriptionId" ColumnName="ClinicDescriptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClinicalInstruments">
+            <EntityTypeMapping TypeName="DENTALERPModel.ClinicalInstrument">
+              <MappingFragment StoreEntitySet="ClinicalInstrument">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Market" ColumnName="Market" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InstrumentId" ColumnName="InstrumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClinicalAccessories">
+            <EntityTypeMapping TypeName="DENTALERPModel.ClinicalAccessory">
+              <MappingFragment StoreEntitySet="ClinicalAccessories">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StockAmount" ColumnName="StockAmount" />
+                <ScalarProperty Name="MarketCost" ColumnName="MarketCost" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccessoriesId" ColumnName="AccessoriesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RowMatrials">
+            <EntityTypeMapping TypeName="DENTALERPModel.RowMatrial">
+              <MappingFragment StoreEntitySet="RowMatrial">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="ManufacturingDate" ColumnName="ManufacturingDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RowMaterialId" ColumnName="RowMaterialId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClinicAccounts">
+            <EntityTypeMapping TypeName="DENTALERPModel.ClinicAccount">
+              <MappingFragment StoreEntitySet="ClinicAccounts">
+                <ScalarProperty Name="TotalIncome" ColumnName="TotalIncome" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DayTotalIncome" ColumnName="DayTotalIncome" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="OutCome" ColumnName="OutCome" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="ClinicAccountId" ColumnName="ClinicAccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClinicEstablishments">
+            <EntityTypeMapping TypeName="DENTALERPModel.ClinicEstablishment">
+              <MappingFragment StoreEntitySet="ClinicEstablishment">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />
+                <ScalarProperty Name="InstrumentServiceCost" ColumnName="InstrumentServiceCost" />
+                <ScalarProperty Name="RowmaterialCost" ColumnName="RowmaterialCost" />
+                <ScalarProperty Name="ElectricityBill" ColumnName="ElectricityBill" />
+                <ScalarProperty Name="EmployeeCost" ColumnName="EmployeeCost" />
+                <ScalarProperty Name="ClinicHouseCharge" ColumnName="ClinicHouseCharge" />
+                <ScalarProperty Name="EstablishmentId" ColumnName="EstablishmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="DENTALERPModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="DiseasesId" ColumnName="DiseasesId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CallingDate" ColumnName="CallingDate" />
+                <ScalarProperty Name="AppionmentDate" ColumnName="AppionmentDate" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="VisitingtDate" ColumnName="VisitingtDate" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PatientCode" ColumnName="PatientCode" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientShedules">
+            <EntityTypeMapping TypeName="DENTALERPModel.PatientShedule">
+              <MappingFragment StoreEntitySet="PatientShedule">
+                <ScalarProperty Name="serialNo" ColumnName="serialNo" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="VisitingPurpose" ColumnName="VisitingPurpose" />
+                <ScalarProperty Name="VisitingTime" ColumnName="VisitingTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PataientType" ColumnName="PataientType" />
+                <ScalarProperty Name="PatientCode" ColumnName="PatientCode" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="DENTALERPModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="LastPaidDate" ColumnName="LastPaidDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="Due" ColumnName="Due" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

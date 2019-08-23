@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D7BA732B-1AD2-448F-859B-F4E949FB2FD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DENTALMIS.BLL</RootNamespace>
+    <AssemblyName>DENTALMIS.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IManager\IClinicSectionManager\IClinicAccessoryManager.cs" />
+    <Compile Include="IManager\IClinicSectionManager\IClinicAccountManager.cs" />
+    <Compile Include="IManager\IClinicSectionManager\IClinicDescriptionManager.cs" />
+    <Compile Include="IManager\IClinicSectionManager\IClinicEstablishmentManager.cs" />
+    <Compile Include="IManager\IClinicSectionManager\IClinicInstrumentManager.cs" />
+    <Compile Include="IManager\IClinicSectionManager\IRowMeterialManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IDiseasesClinicalFeatureManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IDiseasesInvestigationManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IDiseasesManagementManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IDiseasesManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IGenderManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IPatientConditionManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IPatientManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IPatientMedicalHistoryManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IPaymentMethodManager.cs" />
+    <Compile Include="IManager\IDiseasesSectionManager\IServiceManager.cs" />
+    <Compile Include="IManager\IDoctorSectionManager\IDoctorDesignationManager.cs" />
+    <Compile Include="IManager\IDoctorSectionManager\IDoctorManager.cs" />
+    <Compile Include="IManager\IDrugSectionManager\IDrugBrandManager.cs" />
+    <Compile Include="IManager\IDrugSectionManager\IDrugDetailManager.cs" />
+    <Compile Include="IManager\IDrugSectionManager\IDrugGenericManager.cs" />
+    <Compile Include="IManager\IEmployeeManager\IEmployeeDesignationManager.cs" />
+    <Compile Include="IManager\IEmployeeManager\IEmployeeManager.cs" />
+    <Compile Include="IManager\IPatientManager\IPatientManualShedulingManager.cs" />
+    <Compile Include="IManager\IPatientManager\IPatientSheduleManager.cs" />
+    <Compile Include="IManager\IReportManager\IReportManager.cs" />
+    <Compile Include="IManager\ITodayStatusManager\ITodayStatusManager.cs" />
+    <Compile Include="Manager\ClinicSectionManager\ClinicAccessoryMnageer.cs" />
+    <Compile Include="Manager\ClinicSectionManager\ClinicAccountManager.cs" />
+    <Compile Include="Manager\ClinicSectionManager\ClinicDescriptionManager.cs" />
+    <Compile Include="Manager\ClinicSectionManager\ClinicEstablishmentManager.cs" />
+    <Compile Include="Manager\ClinicSectionManager\ClinicInstrumentManager.cs" />
+    <Compile Include="Manager\ClinicSectionManager\RowMeterialManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\DiseasesClinicalFeatureManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\DiseasesInvestigationManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\DiseasesManagementManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\DiseasesManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\GenderManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\PatientConditionManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\PatientManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\PatientMedicalHistoryManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\PaymentMethodManager.cs" />
+    <Compile Include="Manager\DiseasesSectionManager\ServiceManager.cs" />
+    <Compile Include="Manager\DoctorSectionManager\DoctorDesignationManager.cs" />
+    <Compile Include="Manager\DoctorSectionManager\DoctorManager.cs" />
+    <Compile Include="Manager\DrugSectionManager\DrugBrandManager.cs" />
+    <Compile Include="Manager\DrugSectionManager\DrugDetailManager.cs" />
+    <Compile Include="Manager\DrugSectionManager\DrugGenericManager.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeDesignationManager.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeManager.cs" />
+    <Compile Include="Manager\Manager.cs" />
+    <Compile Include="Manager\PatientManager\PatientManualShedulingManager.cs" />
+    <Compile Include="Manager\PatientManager\PatientSheduleManager.cs" />
+    <Compile Include="Manager\ReportManager\ReportManager.cs" />
+    <Compile Include="Manager\TodaystatusManager\TodayStatusManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DENTALMIS.DAL\DENTALMIS.DAL.csproj">
+      <Project>{9fe5f762-727e-4795-baa1-241f8fd92c7b}</Project>
+      <Name>DENTALMIS.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DENTALMIS.Model\DENTALMIS.Model.csproj">
+      <Project>{819a63f7-1e93-4280-97bd-a956833efb8a}</Project>
+      <Name>DENTALMIS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DENTALMIS.Utility\DENTALMIS.Utility.csproj">
+      <Project>{12CD0758-EF30-4BF8-B55C-5EC021136F04}</Project>
+      <Name>DENTALMIS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

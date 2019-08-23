@@ -1,0 +1,138 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugdetailViewModel
+@{
+    ViewBag.Title = (Model.DrugDetailId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "DrugDetails", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.DrugDetailId)
+    @*@Html.ValidationSummary(true)*@
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Indication)
+                @Html.EditorFor(x => x.Indication, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Indication)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.LabelFor(x => x.Dosage)
+                @Html.EditorFor(x => x.Dosage, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Dosage)
+
+
+            </td>
+        </tr>
+        <tr class="form_group">
+          
+            <td>
+                @Html.LabelFor(x=>x.Contraindication)
+                @Html.EditorFor(x=>x.Contraindication ,new{htmlattributes=new {@class="text ui-widget-content ui-corner-all"}})
+                @Html.ValidationMessageFor(x=>x.Contraindication)
+            </td>  
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x=>x.SideEffect)
+                @Html.EditorFor(x=>x.SideEffect , new{ htmlAttributes=new {@class="text ui-widget-content ui-corner-all"}} )
+                @Html.ValidationMessageFor(x=>x.SideEffect)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.UseInPregnency)
+                @Html.EditorFor(x => x.UseInPregnency, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.UseInPregnency)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.LabelFor(x => x.UseInLactation)
+                @Html.EditorFor(x => x.UseInLactation, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.UseInLactation)
+
+
+            </td>
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.DrugInteraction)
+                @Html.EditorFor(x => x.DrugInteraction, new { htmlattributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.DrugInteraction)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Precaution)
+                @Html.EditorFor(x => x.Precaution, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Precaution)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.Mechanism)
+                @Html.EditorFor(x => x.Mechanism, new { htmlattributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Mechanism)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.DrugGeneric.Name)
+                @Html.DropDownListFor(x => x.GenericId,Model.DrugGenericSelectListItems,"--All",  new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.DrugGeneric.Name)
+            </td>
+
+        </tr>
+
+        <tr >
+            <td class="form_group" style="float: right;">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+

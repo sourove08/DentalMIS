@@ -1,0 +1,100 @@
+﻿@using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+@using DENTALMIS.Web.Extension
+@model  DENTALMIS.Web.Models.ClinicDescriptionModel.ClinicRowMeterialViewModel
+@{
+    ViewBag.Title = (Model.RowMaterialId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "RowMeterial", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.RowMaterialId)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+
+            <td>
+                @Html.LabelFor(x => x.Cost)
+                @Html.EditorFor(x => x.Cost, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Cost)
+            </td>
+
+
+
+        </tr>
+        <tr class="form_group">
+
+
+
+
+
+            <td>
+                @Html.LabelFor(x=>x.ManufacturingDate)
+                @Html.EditorFor(x => x.ManufacturingDate, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.ManufacturingDate)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x=>x.ExpireDate)
+                @Html.EditorFor(x => x.ExpireDate, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.ExpireDate)
+            </td>
+
+
+
+
+
+
+        </tr>
+
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Amount)
+                @Html.EditorFor(x => x.Amount, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Amount)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td style="float: left">
+                @Html.SaveButton()
+            </td>
+        </tr>
+
+
+    </table>
+}
+

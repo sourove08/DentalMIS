@@ -1,0 +1,78 @@
+﻿@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.ClinicDescriptionModel.ClinicAccessoryViewModel
+@{
+    ViewBag.Title = "Clinic Accessoriess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left: 450px; font-weight: bolder;color: darkblue;">[--Clinic Accesssories--]</h3>
+<section class="search formCover" style="margin-bottom: 5px;">
+    @using (Html.BeginForm("Index", "ClinicAccessories", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    <strong>
+                        @Html.LabelFor(x => x.Name)
+
+                    </strong>
+                </td>
+                <td></td>
+                <td></td>
+
+                <td>@Html.TextBoxFor(x => x.SearchbyName, new { @placeholder = "Search", @class = "search_TextBox" })</td>
+
+                <td></td>
+
+
+
+
+                <td>@Html.SearchButton()</td>
+            </tr>
+        </table>
+    }
+</section>
+
+
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>@Html.Button("Add new", new { @class = "AjaxPopup", @action = "/ClinicAccessories/Edit/" })</p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.ClinicalAccessories, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+            tableStyle: "webgrid-table webgrid",
+            headerStyle: "webgrid-header",
+            footerStyle: "webgrid-footer",
+            alternatingRowStyle: "webgrid-alternating-row",
+            selectedRowStyle: "webgrid-selected-row",
+            rowStyle: "webgrid-row-style",
+            firstText: "First",
+            lastText: "last",
+            nextText: "Next",
+            mode: WebGridPagerModes.All,
+            previousText: "Previous",
+            columns: grid.Columns(
+                              grid.Column("Name", header: "Clinic Intrumeent Name"),
+
+                                                                                                               grid.Column("Purpose", header: "Accesssory Purpose"),
+
+
+
+
+                                                                                                      grid.Column("MarketCost", header: "Market Price In Taka", format: @<text>@(item.MarketCost == null ? "" : item.MarketCost.ToString())</text>),
+                                                                                                                                                                                                                      grid.Column("StockAmount", header: "Stock Amount", format: @<text>@(item.StockAmount == null ? "" : item.StockAmount.ToString())</text>),
+
+
+                grid.Column("Detail/Edit", format: @<text><button class="edit" action="/ClinicAccessories/Edit/?AccessoriesId=@item.AccessoriesId"></button></text>, canSort: false),
+                         grid.Column("Delete",format:@<text><button class="delete" action="/ClinicAccessories/Delete/?AccessoriesId=@item.AccessoriesId"></button></text>, canSort: false)));
+
+
+
+        }
+    </div>
+</section>

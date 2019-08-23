@@ -1,0 +1,50 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.DiseasesViewModel
+@{
+    ViewBag.Title = (Model.DiseasesId > 0) ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Diseases", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.DiseasesId)
+    <table>
+
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Aetiology)
+                @Html.EditorFor(x => x.Aetiology, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Aetiology)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Pathophysiology)
+                @Html.EditorFor(x => x.Pathophysiology, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Pathophysiology)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.DiseasesInvestigation.Name)
+                @Html.DropDownListFor(x => x.DiseasesInvestigationId, Model.DiseasescInvestigationSelectListItems, "--All", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.DiseasesInvestigation.Name)
+            </td>
+        </tr>
+
+        <tr class="form_group">
+            <td style="float: right;">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+

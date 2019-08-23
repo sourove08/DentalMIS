@@ -1,0 +1,43 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DoctSectionViewModel.DoctorDesinationViewmodel
+@{
+    ViewBag.Title = Model.DoctorDesignationId > 0 ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+<div>
+
+    @using (Html.BeginForm("Save", "DoctorDesignation", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.DoctorDesignationId)
+        <table>
+            <tr class="form_group ">
+                <td>
+                    @Html.LabelFor(model => model.DesignationName)
+                    @Html.EditorFor(model => model.DesignationName, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                    @Html.ValidationMessageFor(x =>x.DesignationName)
+
+                </td>
+
+            </tr>
+            <tr class="form_group ">
+                <td>
+                    @Html.LabelFor(model => model.Description)
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all", col="3" } })
+
+                    @Html.ValidationMessageFor(model => model.Description)
+
+                </td>
+
+            </tr>
+
+            <tr style="float: right">
+                <td>
+                @Html.SaveButton()
+                    </td>
+            </tr>
+        </table>
+
+    }
+</div>

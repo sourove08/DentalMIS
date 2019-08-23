@@ -1,0 +1,63 @@
+﻿
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h2 style="margin-left:400px;">User</h2>
+<section class="search formCover" style="margin-bottom: 10px;">
+
+    @using (Html.BeginForm("Index", "Account", FormMethod.Get, new { @class ="submit-allow ignore-validation" }))
+    {
+        <table>
+            <tr class="form_group">
+                <td>
+                    @Html.LabelFor(x=>x.UserName)
+                </td>
+                <td></td>
+
+                <td>
+                    @Html.TextBoxFor(x => x.UserName, new { @placeholder = "Search", @class = "search search_TextBox" })
+                </td>
+                <td></td>
+                <td></td>
+                <td>@Html.SearchButton()</td>
+                 
+            </tr>
+        </table>
+    }
+</section>
+<section class="section formCover">
+    <p>
+
+        @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/Account/Register/" })
+
+    </p>
+    @{
+        var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+        grid.Bind(Model.ApplicationUsers, rowCount: Model.ApplicationUsers.Count, autoSortAndPage: false);
+        grid.Pager(WebGridPagerModes.All);
+        @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                                grid.Column("UserName")
+                     ,
+                         grid.Column("Detail/Edit", format: @<text><button class="edit" action="/Account/Edit/@item.Id"></button></text>, canSort: false),
+                         grid.Column("Delete",format:@<text><button class="delete" action="/Account/Delete/@item.Id"></button></text>, canSort: false)));
+    }
+</section>
+
+

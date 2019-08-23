@@ -1,0 +1,91 @@
+﻿.webgrid-table {
+    font-family: Tahoma;
+    font-size: 12px;
+    width: 100%;
+    color: #333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+
+.webgrid button {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.webgrid-table thead {
+    border: 1px solid #FAFAFA;
+    padding: 3px 7px 2px;
+}
+
+.webgrid-table td, th {
+    border: 1px solid black;
+    padding: 3px 7px 2px;
+}
+/*.webgrid-table tr:hover {
+    background-color: #fafafa;
+}*/
+
+.webgrid-header {
+    /*background-color: #eaf2d3;
+    color: #000000;*/
+    background-color: midnightblue;
+    color: #ffffff;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+}
+
+.webgrid-footer {
+    text-align: center;
+}
+
+    .webgrid-footer td {
+        background: #f2f2f2;
+        padding: 20px;
+        margin-bottom: 20px;
+        font: 14px/24px sans-serif;
+    }
+
+        .webgrid-footer td a[href] {
+            display: inline-block;
+            padding: 0px 9px;
+            margin-right: 4px;
+            border-radius: 3px;
+            border: solid 1px #c0c0c0;
+            box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+            font-size: .875em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #717171;
+            text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+        }
+
+            .webgrid-footer td a[href]:hover {
+                background-color:lime;
+            }
+
+.webgrid-row-style {
+    padding: 3px 7px 2px;
+}
+
+.webgrid-alternating-row {
+    background-color: #EAF2D3;
+    padding: 3px 7px 2px;
+}
+
+
+    .exportReport {
+        text-align: center;
+        
+    }
+.additem {
+    padding-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+    .webgrid-table tr:hover {
+        background-color:darkorange;
+      text-decoration: none;
+}

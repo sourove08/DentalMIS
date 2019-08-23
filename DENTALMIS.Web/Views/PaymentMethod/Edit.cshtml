@@ -1,0 +1,121 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PaymentMethodViewModel
+@{
+    ViewBag.Title = (Model.PaymentMethodId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "PaymentMethod", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.PaymentMethodId)
+    @Html.ValidationSummary(true)
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Patient.Name)
+                @Html.DropDownListFor(x => x.PatientId, Model.PatientSelectListItems,"--Select--", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Patient.Name)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+            <td>
+                @Html.LabelFor(x => x.Service.Name)
+                @Html.DropDownListFor(x => x.ServiceId, Model.ServiceSelectListItems, "--Select--", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Service.Name)
+            </td>
+            
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.Charge)
+                @Html.EditorFor(x => x.Charge, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Charge)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.DiscountAmount)
+                @Html.EditorFor(x => x.DiscountAmount, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.DiscountAmount)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Paid)
+                @Html.EditorFor(x => x.Paid, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Paid)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Date)
+                @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Date)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td colspan="2">
+                @Html.LabelFor(x => x.PaymentType)
+
+
+                @Html.DropDownList("PaymentType", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text = "Cash" , Value = "Cash"},
+                    new SelectListItem{Text = "Card", Value = "Card"},
+                   
+                }, "--Select--", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.PaymentType)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+            <td >
+                @Html.SaveButton()
+            </td>
+       
+
+        </tr>
+
+        
+      
+        @*<tr class="form_group" >
+            <td style="float: right;">
+                @Html.SaveButton()
+            </td>
+
+        </tr>*@
+    </table>
+}
+

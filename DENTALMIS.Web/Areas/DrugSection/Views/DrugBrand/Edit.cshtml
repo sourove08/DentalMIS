@@ -1,0 +1,53 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugBrandViewModel
+@{
+    ViewBag.Title =(Model.BrandId>0)? "Edit":"Save";
+    Layout ="~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "DrugBrand", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.BrandId)
+    @*@Html.HiddenFor(x=>x.GenericId)*@
+    @Html.AntiForgeryToken()
+    
+    <fieldset>
+        <legend>Drug Entry</legend>
+        <table style="font-size: 15px; font-weight: bolder">
+            <tr>
+                <td>
+                    @Html.LabelFor(x=>x.Name)
+                </td>
+                <td>
+                    @Html.EditorFor(x=>x.Name)
+                    @Html.ValidationMessageFor(x=>x.Name)
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+            <tr></tr><tr>
+                         <td>
+                             @Html.LabelFor(x => x.Preparation)
+                         </td>
+                         <td>
+                             @Html.EditorFor(x => x.Preparation)
+                             @Html.ValidationMessageFor(x => x.Preparation)
+                         </td>
+                     </tr>
+            <tr></tr><tr></tr><tr>
+                                  <td>@Html.LabelFor(x => x.DrugGeneric.Name)</td>
+
+                                  <td>@Html.DropDownListFor(x => x.GenericId, Model.DruggenericSelectListItems, "-All", new { @class = "text ui-widget-content ui-corner-all" })</td>
+                                   @*<td>@Html.ValidationMessageFor(x => x.DrugGeneric.Name)
+                                  </td>*@ 
+                              </tr>
+            <tr></tr><tr></tr><tr>
+                <td></td>
+                <td style="float: right;">@Html.SaveButton()</td>
+            </tr>
+        </table>
+    </fieldset>
+    
+}
+

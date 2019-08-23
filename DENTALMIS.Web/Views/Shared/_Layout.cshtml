@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+            color: floralwhite; /*Sets the text hover color on navbar*/
+        }
+
+        .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+            color: white; /*BACKGROUND color for active*/
+            background-color:crimson;
+        }
+
+        .navbar-default {
+            /*background-color:crimson;
+            border-color: #030033;*/
+            background-color: crimson;
+            border-color: crimson;
+        }
+
+        .dropdown-menu > li > a:hover,
+        .dropdown-menu > li > a:focus {
+            color: #262626;
+            text-decoration: none;
+            background-color:darkorange; /*change color of links in drop down here*/
+        }
+
+        .nav > li > a:hover,
+        .nav > li > a:focus {
+            text-decoration: none;
+            background-color: silver; /*Change rollover cell color here*/
+        }
+
+
+        .navbar-default .navbar-nav > li > a {
+            color: white; /*Change active text color here*/
+        }
+    </style>
+    <style type="text/css">
+        .container {
+            width: auto;
+            margin-left: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
+
+        .affix ~ .container-fluid {
+            position: relative;
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner" style="height: 90px; margin-top: 1px;">
+        <div style="margin-left: 2px; margin-top: 2px; float: left">
+            <img src="~/Content/Dental.jpg" width="265px" height="87px" />
+        </div>
+        @*<img src="~/Content/Dental.jpg" />*@
+
+        <div style="margin-right: 10px; margin-top: 10px; float: right">
+            <a title="Home" href="@Url.Action("Index", "Home")"><img src="~/Content/images/Home.jpg" width="50px" height="50px" /> </a>
+
+        </div>
+        <div align="center" style="margin-top: 20px; color:darkorange; font-size: 25px;">ELITE DENTAL CARE</div>
+
+     
+    </div>
+    <div>
+        <ul class="w3-navbar w3-card-2 w3-hover-light-grey">
+            @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole
+                        ("Admin"))
+            {
+                <li class="w3-dropdown-hover">
+                    <a href="#" class="w3-hover-orange">User Rights<b class="caret"></b></a>
+                    <div class="w3-dropdown-content w3-white w3-card-4">
+                        <a href="@Url.Action("Index","Role")">User Type</a>
+                        <a href="@Url.Action("Index","Account")">User List</a> 
+                       
+                       
+
+                    </div>
+
+                </li>
+            }
+            <li class="w3-dropdown-hover">
+                <a href="#" class="w3-hover-orange">Drug Section<b class="caret"></b></a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="@Url.Action("Index","DrugGeneric")">Drug Generic Name</a>
+                    <a href="@Url.Action("Index","DrugBrand")">Drug Brand Name</a>
+
+                    <a href="@Url.Action("Index","DrugDetails")">Drug Details List </a>
+
+
+
+                </div>
+
+            </li>
+            <li class="w3-dropdown-hover">
+                <a href="#" class="w3-hover-orange">Diseases Section<b class="caret"></b></a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="@Url.Action("Index","DiseasesClinicalfeature")">Diseases Clinicalfeature</a>
+                    <a href="@Url.Action("Index","DiseasesInvestigation")">Diseases Investigation</a>
+
+                    <a href="@Url.Action("Index","Diseases")">Diseases Details</a>
+                    <a href="@Url.Action("Index","DiseasesManagement")">Diseases Management</a>
+
+                </div>
+
+            </li>
+            <li class="w3-dropdown-hover">
+                <a href="#" class="w3-hover-orange">Patient Condition & Medical History<b class="caret"></b></a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="@Url.Action("Index","Patient")">Patient Information</a>
+                    <a href="@Url.Action("Index","PatientMedicalHistory")">Patient MedicalHistory</a>
+
+                    <a href="@Url.Action("Index","PatientCondition")">Patient Condition</a>
+                    <a href="@Url.Action("Index","PatientManualSheduling")">Patient Manual Sheduling</a>
+                    <a href="@Url.Action("Index","PatientShedule")">Patient Shedule</a>
+                    <a href="@Url.Action("Index","Service")">Treatment Service</a>
+
+                    @*<a href="@Url.Action("Index","PatientTodayStatus")">Patient TodayStatus</a>
+                    <a href="@Url.Action("Index","Gender")">Gender Information</a>*@
+
+
+
+
+                </div>
+
+            </li>
+            <li class="w3-dropdown-hover">
+                <a href="#" class="w3-hover-orange">Payment & Clinic Details<b class="caret"></b></a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="@Url.Action("Index","PaymentMethod")">Payment Record</a>
+                    <a href="@Url.Action("Index","ClinicEstablishment")">Clinic Establishment</a>
+                    <a href="@Url.Action("Index","ClinicAccount")">Clinic Account</a>
+                    <a href="@Url.Action("Index","ClinicDetails")">Clinic Details</a>
+
+                    <a href="@Url.Action("Index","ClinicInstrument")"> Clinic Instrument</a>
+                    <a href="@Url.Action("Index","ClinicAccessories")">Clinic Accessories</a>
+                    <a href="@Url.Action("Index","RowMeterial")">Meterial Details</a>
+                  
+
+
+
+
+                </div>
+
+            </li>
+            <li class="w3-dropdown-hover">
+                <a href="#" class="w3-hover-orange">Doctors & Employee Details<b class="caret"></b></a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="@Url.Action("Index","Doctor")">Doctor Details</a>
+                    <a href="@Url.Action("Index","EmployeeDetails")">Employee Details </a>
+                    <a href="@Url.Action("Index","DoctorDesignation")">Doctor Designation</a>
+                    <a href="@Url.Action("Index","EmployeeDesignation")">Employee Designation</a>
+
+
+
+                </div>
+
+            </li>
+            <li class="w3-dropdown-hover">
+                <a href="#" class="w3-hover-orange">Report<b class="caret"></b></a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="@Url.Action("Bill","Report")">Billing Report</a>
+                   
+
+
+
+                </div>
+
+            </li>
+            @Html.Partial("_LoginPartial")
+        </ul>
+       
+
+    </div>
+    
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <div class="footer">
+            <div style="font-size: 12px; color: #ffffff;">Copyright &copy; @(DateTime.Now.Year)ELITE DENTAL CARE.</div>
+            <div style="font-size: 10px; color: #ffffff;">
+                Powered by <a href="#" style="color: #ffffff;">ELITE DENTAL</a>. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+       
+        
+
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/AppScripts")
+
+
+        @RenderSection("scripts", required: false)
+
+    </body>
+
+</html>
+

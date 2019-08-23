@@ -1,0 +1,109 @@
+﻿@using DENTALMIS.Utility
+@using DENTALMIS.Web
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PatientViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 style="margin-left:450px; font-weight: bolder; color:#020033;">[---Patient---List---]</h3>
+<section class="search formCover" style="margin-bottom: 5px; background-color: #020033; color: yellow;">
+    @using (Html.BeginForm("Index", "Patient", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Name)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.SearchByName, new { @placeholder = "Search", @class = "search_TextBox" })
+                </td>
+
+                <td>
+                    @Html.LabelFor(x => x.Contact)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Contact, new { @placeholder = "Search", @class = "search_TextBox" })
+                </td>
+                <td>
+                    @Html.LabelFor(x => x.Disease.Name)
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.DiseasesId, Model.DiseasesSelectListItems, "--Select Diseases Name--", new { @class = "search_dropdown" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.FromDate)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.FromDate, new { htmlAttributes = new { @placeholder = "From date", @class = "search_TextBox" } })
+                </td>
+
+                <td>
+                    @Html.LabelFor(x => x.ToDate)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.ToDate, new { htmlAttributes = new { @placeholder = "To date", @class = "search_TextBox" } })
+                </td>
+                <td>
+                    @Html.SearchButton()
+                </td>
+            </tr>
+            @*<tr>
+                    <td>
+                        @Html.ActionLink("Add User", "Edit", "DrugBrand", new { @class = "AjaxPopup", title = "Add", @action = "DrugBrand/Edit" })
+                    </td>
+                </tr>*@
+        </table>
+    }
+</section>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+                @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/Patient/Edit/" })
+            </p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.Patients, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                           grid.Column("PatientCode", header: "Patient Code"),
+                       grid.Column("Name", header: "Patient Name"),
+
+
+                       grid.Column("Gender.Title", header: "Gender"),
+                                 grid.Column("Age", header: "Age in Years"),
+                                        grid.Column("Contact", header: "Contact No"),
+                                grid.Column("Email", header: "Email"),
+                                           grid.Column("Address", header: "Patient Address"),
+                                         grid.Column("SerialNumber", header: "Serial Number"),
+                                                   grid.Column("VisitingtDate", header: "Visiting Date", format: @<text>@(item.VisitingtDate == null ? "" : item.VisitingtDate.ToString("dd/MM/yyyy"))</text>),
+                    grid.Column("AppionmentDate", header: "Appionment Date", format: @<text>@(item.appionmentDate == null ? "" : item.appionmentDate.ToString("dd-MM-yyyy"))</text>),
+                    grid.Column("CallingDate", header: "Calling Date" , format:@<text>@(item.CallingDate == null ? "" : item.CallingDate.ToString("dd-MM-yyyy"))</text>),
+                                                                 grid.Column("Disease.Name", header: "Disease Name"),
+
+                       grid.Column("Detail/Edit", format: @<text><button class="edit" action="/Patient/Edit?PatientId=@item.PatientId"></button></text>, canSort: false),
+                       grid.Column("Delete",format:@<text><button class="delete" action="/Patient/Delete?PatientId=@item.PatientId"></button></text>, canSort: false)));
+        }
+    </div>
+</section>
+
+
+

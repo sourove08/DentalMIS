@@ -1,0 +1,29 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugGenericViewModel
+@{
+    ViewBag.Title = Model.GenericId > 0 ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+<div>
+
+    @using (Html.BeginForm("Save", "DrugGeneric", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.GenericId)
+        
+        <div class="form_group ">
+            <div>
+                @Html.LabelFor(model => model.Name)
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        
+        <div style="float: right">
+            @Html.SaveButton()
+        </div>
+
+    }
+</div>

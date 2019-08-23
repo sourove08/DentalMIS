@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a82d0268ee3a436383c34cfc0ee31c76" Name="Diagram1">
+        <EntityTypeShape EntityType="DENTALERPModel.DrugDetail" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="DENTALERPModel.DrugGeneric" Width="1.5" PointX="0.75" PointY="3.375" />
+        <AssociationConnector Association="DENTALERPModel.FK_DrugDetails_DrugGeneric" />
+        <EntityTypeShape EntityType="DENTALERPModel.DrugBrand" Width="1.5" PointX="3" PointY="6.25" />
+        <AssociationConnector Association="DENTALERPModel.FK_DrugBrand_DrugGeneric" />
+        <EntityTypeShape EntityType="DENTALERPModel.DiseasesInvestigation" Width="1.5" PointX="7.625" PointY="1.125" />
+        <EntityTypeShape EntityType="DENTALERPModel.DiseasesManagement" Width="1.5" PointX="12.125" PointY="1" />
+        <EntityTypeShape EntityType="DENTALERPModel.DisesesClinicalFeature" Width="1.5" PointX="5.375" PointY="1.375" />
+        <AssociationConnector Association="DENTALERPModel.FK_DiseasesInvestigation_DisesesClinicalFeature" />
+        <AssociationConnector Association="DENTALERPModel.FK_DiseasesManagement_DiseasesInvestigation" />
+        <AssociationConnector Association="DENTALERPModel.FK_DiseasesManagement_DisesesClinicalFeature" />
+        <EntityTypeShape EntityType="DENTALERPModel.Gender" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.Service" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.PatientsMedicalHistory" Width="1.5" PointX="15.125" PointY="5.5" />
+        <EntityTypeShape EntityType="DENTALERPModel.PatientCondition" Width="1.5" PointX="12.125" PointY="5.25" />
+        <AssociationConnector Association="DENTALERPModel.FK_PatientCondition_Service" />
+        <EntityTypeShape EntityType="DENTALERPModel.Disease" Width="1.5" PointX="9.875" PointY="0.875" />
+        <AssociationConnector Association="DENTALERPModel.FK_Diseases_DiseasesInvestigation" />
+        <AssociationConnector Association="DENTALERPModel.FK_DiseasesManagement_Diseases" />
+        <AssociationConnector Association="DENTALERPModel.FK_PatientCondition_Diseases" />
+        <AssociationConnector Association="DENTALERPModel.FK_PatientsMedicalHistory_Diseases" />
+        <EntityTypeShape EntityType="DENTALERPModel.TodaysPatientstatu" Width="1.5" PointX="1.25" PointY="8.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.Doctor" Width="1.5" PointX="9.625" PointY="4.875" />
+        <EntityTypeShape EntityType="DENTALERPModel.DoctorsDesignation" Width="1.5" PointX="7.375" PointY="8.75" />
+        <AssociationConnector Association="DENTALERPModel.FK_Doctors_DoctorsDesignations" />
+        <AssociationConnector Association="DENTALERPModel.FK_Doctors_Gender" />
+        <EntityTypeShape EntityType="DENTALERPModel.ClinicEmployee" Width="1.5" PointX="9.625" PointY="10.625" />
+        <EntityTypeShape EntityType="DENTALERPModel.Employeedesignation" Width="1.5" PointX="7.375" PointY="12.375" />
+        <AssociationConnector Association="DENTALERPModel.FK_ClinicEmployee_Employeedesignation" />
+        <AssociationConnector Association="DENTALERPModel.FK_ClinicEmployee_Gender" />
+        <EntityTypeShape EntityType="DENTALERPModel.ClincDescription" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.ClinicalInstrument" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.ClinicalAccessory" Width="1.5" PointX="12.375" PointY="9.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.RowMatrial" Width="1.5" PointX="12.375" PointY="12.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.ClinicAccount" Width="1.5" PointX="3.375" PointY="13.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.ClinicEstablishment" Width="1.5" PointX="14.375" PointY="9.75" />
+        <EntityTypeShape EntityType="DENTALERPModel.Patient" Width="1.5" PointX="15.125" PointY="0.75" />
+        <AssociationConnector Association="DENTALERPModel.FK_Patient_Diseases" />
+        <AssociationConnector Association="DENTALERPModel.FK_Patient_Gender" />
+        <AssociationConnector Association="DENTALERPModel.FK_PatientCondition_Patient" />
+        <AssociationConnector Association="DENTALERPModel.FK_PatientsMedicalHistory_Patient" />
+        <EntityTypeShape EntityType="DENTALERPModel.PatientShedule" Width="1.5" PointX="17.375" PointY="6.75" />
+        <AssociationConnector Association="DENTALERPModel.FK_PatientShedule_Patient" />
+        <EntityTypeShape EntityType="DENTALERPModel.PaymentMethod" Width="1.5" PointX="17.375" PointY="2" />
+        <AssociationConnector Association="DENTALERPModel.FK_PaymentMethod_Patient" />
+        <AssociationConnector Association="DENTALERPModel.FK_PaymentMethod_Service" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

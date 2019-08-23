@@ -1,0 +1,151 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PatientViewModel
+@{
+    ViewBag.Title = (Model.PatientId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Patient", FormMethod.Post))
+{
+     @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.PatientId)
+    @Html.ValidationSummary(true)
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Contact)
+                @Html.EditorFor(x => x.Contact, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Contact)
+            </td>
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.Age)
+                @Html.EditorFor(x => x.Age, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Age)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Gender.Title)
+                @Html.DropDownListFor(x => x.GenderId, Model.GenderSelectListItems, "---Select Gender---", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Gender.Title)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Email)
+                @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Email)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Address)
+                @Html.EditorFor(x => x.Address, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Address)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.CallingDate)
+                @Html.EditorFor(x => x.CallingDate, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.CallingDate)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.SerialNumber)
+                @Html.EditorFor(x => x.SerialNumber, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.SerialNumber)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.AppionmentDate)
+                @Html.EditorFor(x => x.AppionmentDate, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.AppionmentDate)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.VisitingtDate)
+                @Html.EditorFor(x => x.VisitingtDate, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.VisitingtDate)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Disease.Name)
+                @Html.DropDownListFor(x => x.DiseasesId, Model.DiseasesSelectListItems, "---Select Diseases---", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Disease.Name)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.PatientCode)
+                @Html.EditorFor(x => x.PatientCode,  new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.PatientCode)
+            </td>
+
+        </tr>
+    <tr class="form_group">
+        <td style="float: right;">
+            @Html.SaveButton()
+        </td>
+
+    </tr>
+</table>
+}
+

@@ -1,0 +1,152 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PatientMedicalHistoryViewModel
+@{
+    ViewBag.Title = (Model.PatientId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+    @using (Html.BeginForm("Save", "PatientMedicalHistory", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.PatientHistoryId)
+        @Html.ValidationSummary(true)
+        <table>
+            <tr class="form_group">
+                <td>
+                    @Html.LabelFor(x => x.Disease.Name)
+
+                    @*@Html.DropDownListFor(x => x.SearchField.SearchByDiseasesId, Model.DiseasesSelectListItems, "--Select diseases Name--", new { @class = "search_dropdown", @action = "/PatientMedicalHistory/GetAllPatientByDiseasesId", @TargetClass = "Paient" })*@
+                    @*@Html.DropDownList("diseasesId", Model.DiseasesSelectListItems, "--Select diseases Name--", new {  @onchange = " getPatientByDisease(this.value)" })*@
+                    @*@Html.DropDownList("diseasesId", Model.DiseasesSelectListItems, "--Select diseases Name--", new { @class = "text ui-widget-content ui-corner-all" })*@
+                    
+                    @Html.DropDownListFor(x=>x.DiseasesId, Model.DiseasesSelectListItems, "-Select-", new { @onchange = "getPatientByDisease(this.value)", @class = "text ui-widget-content ui-corner-all" })
+                    @*@Html.DropDownList("diseasesId", Model.DiseasesSelectListItems, "--Select diseases Name--", new { @onclick = "getPatientByDisease", @class = "search_dropdown " })*@
+                    @Html.ValidationMessageFor(x => x.Patient.Name)
+
+                </td>
+                <td></td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+                <td>
+                <td>
+
+                    @Html.LabelFor(x => x.Patient.Name)
+
+
+                    @Html.DropDownListFor(x=>x.PatientId,Model.PatientSelectListItems, "-All-", new { id = "patients", @class = "text ui-widget-content ui-corner-all" })
+                    @*@Html.DropDownList("patientId", Model.PatientSelectListItems, "--Select  Name--", new { @class = "search_dropdown AjaxPopup" })*@
+
+
+                    @Html.ValidationMessageFor(x => x.Disease.Name)
+                </td>
+            </tr>
+            <tr class="form_group">
+
+                <td>
+                    @Html.LabelFor(x => x.VitalSign)
+                    @Html.EditorFor(x => x.VitalSign, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                    @Html.ValidationMessageFor(x => x.VitalSign)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.LabelFor(x => x.Medicalhistory)
+                    @Html.EditorFor(x => x.Medicalhistory, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                    @Html.ValidationMessageFor(x => x.Medicalhistory)
+                </td>
+
+            </tr>
+
+            <tr class="form_group">
+                <td style="float: right;">
+                    @Html.SaveButton()
+                </td>
+
+            </tr>
+        </table>
+    }
+
+
+@*<script src="~/Scripts/AppScripts/Ptients2.js"></script>*@
+<script type="text/javascript">
+    function getPatientByDisease(dId) { // This is for cascade dropdown 
+        var url = "/PatientMedicalHistory/GetPatientbyDiseases";
+        $.ajax({
+            url: url,
+            type: "get",
+            data: { "diseasesId": dId },
+            dataType: 'json',
+            success: function (data) {
+                if (data.length != 0) {
+                    var items = '<option >--Select Patient Name--</option>';
+                    $.each(data, function (i, d) {
+                        items += "<option value='" + d.PatientId + "'>" + d.Name + "</option>";
+                    });
+                    $('#patients').html(items);
+                } else {
+                    var items = '<option>Not found</option>';
+                    $('#patients').html(items);
+                }
+
+            }
+        });
+    }
+</script>
+
+@*@section scripts{
+        <script src="~/Scripts/AppScripts/Patient.js"></script>
+        <script type="text/javascript">
+            $('#diseasesId').unbind('change').bind('change', function () {
+                var dId = $(this).val();
+                var responseText = $("#diseasesId option:selected").text();
+                if (responseText != '--Select diseases Name--') {
+                    getPatientByDiseasesId(dId);
+                } else {
+                    $("#patientId").find('option')
+                        .remove()
+                        .end()
+                        .append('<option>--Select Name--</option>');
+
+                }
+            });
+            function getPatientByDiseasesId(dId) {
+                $('#patientId').html('');
+                if (dId != "") {
+                    $.getJSON('/PatientMedicalHistory/GetAllPatientByDiseasesId', { id: dId }).done(function (data) {
+                        if (data.length != 0) {
+                            var items = '<option >--Select Patient Name--</option>';
+                            $.each(data, function (i, d) {
+                                items += "<option value='" + d.PatientId + "'>" + d.Name + "</option>";
+                            });
+                            $('#patientId').html(items);
+                        } else {
+                            var items = '<option>Not found</option>';
+                            $('#EmployeeDetail_EmployeeDesignationId').html(items);
+                        }
+
+                    });
+
+                } else {
+
+                    $('#EmployeeDetail_EmployeeGradeId option').remove();
+                    $('#EmployeeDetail_EmployeeDesignationId option').remove();
+                }
+            }
+        </script>*@
+    

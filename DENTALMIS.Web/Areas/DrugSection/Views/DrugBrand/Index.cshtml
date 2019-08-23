@@ -1,0 +1,160 @@
+﻿@using System.Runtime.Remoting.Messaging
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugBrandViewModel
+@{
+    ViewBag.Title = "DrugBrand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@*<script>
+        $(document).ready(function() {
+            $("datepicker").datepicker();
+        });
+    </script>*@
+
+@using (Html.BeginForm("Index", "DrugBrand", FormMethod.Get))
+{
+    @Html.HiddenFor(x => x.IsSearch)
+    <div style="width:500px; padding-left: 340px;">
+        <h3>Brand Name Of Drug List</h3>
+    </div>
+    <section class="search formCover" style="margin-bottom: 10px;">
+        <table class="tabefont">
+            <tr>
+               
+               
+                <td>
+                    <strong>
+                        @Html.LabelFor(x=>x.Name)
+                    </strong>
+                </td>
+                <td>
+                    @Html.TextBoxFor(x=>x.SeachByBrandName)
+                </td>
+                <td></td>
+                <td></td>
+                <td>@Html.LabelFor(x => x.DrugGeneric.Name)</td>
+                <td></td>
+
+                <td>@Html.DropDownListFor(x => x.GenericId, Model.DruggenericSelectListItems, "-All")</td>
+                <td></td>
+
+                <td>
+                    <input type="button" class="searchAction" />
+
+                </td>
+                @*<td>@Html.TextBox("", new { @class = "ui-datepicker" })</td>*@
+
+                @*<td>@Html.DropDownListFor(x=>x.GenericId,Model.DrugSelectListItems,"-----------------Select-----------------")</td>*@
+                @*<td>
+                        <input type="button" class="searchAction" />
+
+                    </td>*@
+                @*</tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            @Html.Label("Genric Name :")
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(x=>x.GenericId,Model.DruggenericSelectListItems,"--Select--")
+
+
+
+                        </td>*@
+                @*<td>@Html.TextBox("", new { @class = "ui-datepicker" })</td>*@
+
+                @*<td>@Html.DropDownListFor(x=>x.GenericId,Model.DrugSelectListItems,"-----------------Select-----------------")</td>*@
+
+            </tr>
+
+            @*<tr>
+
+                    <td>@Html.LabelFor(x=>x.DrugGeneric.Name)</td>
+                    <td>@Html.DropDownListFor(x=>x.GenericId,Model.DruggenericSelectListItems,"-All" )</td>
+                    <td>
+                        <input type="button" class="searchAction" />
+
+                    </td>
+                </tr>*@
+
+
+        </table>
+    </section>
+}
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-bottom: 5px;">
+            <button class="AjaxPopup addButton " action="/DrugSection/DrugBrand/Edit">Add New</button>
+        </div>
+
+
+
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.DrugBrands, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                           //grid.Column(header: "Index", format: item => item.WebGrid.Rows.IndexOf(item) + 1),
+                           
+                           
+                            grid.Column("Name", header: "Brand Name"),
+
+                            grid.Column("Preparation", header: "Drug Preparation"),
+                            
+                            grid.Column("DrugGeneric.Name", header: "Generic Name Of Drug"),
+
+                            grid.Column("Edit/Details", format: @<text><button class="edit" action="/DrugSection/DrugBrand/Edit?BrandId=@item.BrandId"></button></text>, canSort:false),
+
+                            grid.Column("Delete", format:@<text><button class="delete" action="/DrugSection/DrugBrand/Delete?BrandId=@item.BrandId"></button></text>, canSort: false)
+
+
+
+));
+        }
+
+        @*@{
+                  var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+                  grid.Bind(Model.DrugBrands, rowCount: Model.TotalRecords, autoSortAndPage: false);
+                  grid.Pager(WebGridPagerModes.All);
+                  @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                  tableStyle: "webgrid-table webgrid",
+                  headerStyle: "webgrid-header",
+                  footerStyle: "webgrid-footer",
+                  alternatingRowStyle: "webgrid-alternating-row",
+                  selectedRowStyle: "webgrid-selected-row",
+                  rowStyle: "webgrid-row-style",
+                  firstText: "First",
+                  lastText: "Last",
+                  nextText: "Next",
+                  mode: WebGridPagerModes.All,
+                  previousText: "Previous",
+                  columns:
+                  grid.Columns(
+                  grid.Column("Name", header: "Drug Brand Name"),
+                      grid.Column("Preparation", header: "Preparation"),
+                                grid.Column("DrugGeneric.Name", header: "Drug Generic name", format: @<text>@(item.DrugGeneric == null ? "" : item.DrugGeneric.Name)</text>),
+                      grid.Column("Edit", format: @<text><button class="edit" action="/DrugSection/DrugBrand/Edit?BrandId=@item.BrandId"></button></text>, canSort:false),
+                      grid.Column("Delete", format:@<text><button class="delete" action="/DrugSection/DrugBrand/Delete?BrandId=@item.BrandId"></button></text>, canSort: false)
+            ));
+              }*@
+    </div>
+</section>

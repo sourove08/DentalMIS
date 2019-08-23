@@ -1,0 +1,143 @@
+﻿
+
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.TodayPatientStatusViewModel
+@{
+    ViewBag.Title = (Model.Id > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "PatientTodayStatus", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.PatientName)
+                @Html.EditorFor(x => x.PatientName, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.PatientName)
+            </td>
+
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td colspan="2">
+                @Html.LabelFor(x => x.PatientStatus)
+                @*@Html.EditorFor(x => x.PatientStatus, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })*@
+
+                @Html.DropDownList("PatientStatus", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text = "New" , Value = "New"},
+                    new SelectListItem{Text = "Old", Value = "Old"}
+                }, "--Select--", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.PatientStatus)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.SerialNo)
+                @Html.EditorFor(x => x.SerialNo, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.SerialNo)
+            </td>
+
+
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.Label("In Time : (HH:MM)")
+                @*@Html.DropDownList("Hours", (IEnumerable<SelectListItem>)ViewBag.Hours, new { @class = "text ui-widget-content ui-corner-all", style = "width: 90px" })
+                    @Html.DropDownList("minutes", (IEnumerable<SelectListItem>)ViewBag.minutes, new { @class = "text ui-widget-content ui-corner-all", style = "width: 90px" })
+                    @Html.DropDownList("period", (IEnumerable<SelectListItem>)ViewBag.period, new { @class = "text ui-widget-content ui-corner-all", style = "width: 90px" })*@
+                @*@Html.LabelFor(x=>x.visitingtime)*@
+                @*@Html.Editor("visitingtime", new { htmlAttributes = new { @class = "timePicker " } })*@
+                @*@Html.EditorFor(model=>model.InTime, new { htmlAttributes = new { @class = "timePicker " } })*@
+
+
+                @Html.EditorFor(x => x.visitingtime, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.visitingtime)
+        </tr>
+
+
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.VisitingDate)
+                @Html.EditorFor(x => x.VisitingDate, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.VisitingDate)
+            </td>
+
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.contact)
+                @Html.EditorFor(x => x.contact, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.contact)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.VisitingPurpose)
+                @Html.EditorFor(x => x.VisitingPurpose, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.VisitingPurpose)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.SaveButton()
+                @*<input type="submit" class="btn btn-info"/>*@
+            </td>
+        </tr>
+
+        @*<tr class="form_group">*@
+
+
+
+    </table>
+}
+
+
+<script src="~/Scripts/jquery.ui.timepicker.js"></script>
+

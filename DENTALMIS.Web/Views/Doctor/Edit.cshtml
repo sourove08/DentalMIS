@@ -1,0 +1,138 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DoctSectionViewModel.DoctorviewModel
+@{
+    ViewBag.Title = (Model.DoctorId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "Doctor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.DoctorId)
+    @*@Html.ValidationSummary(true)*@
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Name)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.LabelFor(x => x.RegistrationNo)
+                @Html.EditorFor(x => x.RegistrationNo, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.RegistrationNo)
+
+
+            </td>
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.DoctorsDesignation.DesignationName)
+                @Html.DropDownListFor(x => x.DessignationId, Model.DoctorDesignationSelectListItems, "--All", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.DoctorsDesignation.DesignationName)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Gender.Title)
+                @Html.DropDownListFor(x => x.GenderId, Model.GenderSelectListItems, "--All", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Gender.Title)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Adress)
+                @Html.EditorFor(x => x.Adress, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Adress)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.LabelFor(x => x.Contact)
+                @Html.EditorFor(x => x.Contact, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Contact)
+
+
+            </td>
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.Email)
+                @Html.EditorFor(x => x.Email, new { htmlattributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Email)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Website)
+                @Html.EditorFor(x => x.Website, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Website)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+
+            <td>
+                @Html.LabelFor(x => x.FacebookId)
+                @Html.EditorFor(x => x.FacebookId, new { htmlattributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.FacebookId)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+            <td>
+                @Html.LabelFor(x => x.Twitter)
+                @Html.EditorFor(x => x.Twitter, new { htmlattributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Twitter)
+            </td>
+
+        </tr>
+
+        <tr>
+            <td class="form_group" style="float: right;">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+

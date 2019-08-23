@@ -1,0 +1,78 @@
+﻿@using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.ClinicDescriptionModel.ClinicAcountViewModel
+           @{
+    ViewBag.Title = (Model.ClinicAccountId > 0) ? "Edit" : "Save";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+
+}
+@using (Html.BeginForm("Save", "ClinicAccount", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ClinicAccountId)
+
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Income)
+                @Html.EditorFor(x => x.Income, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Income)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+
+            <td>
+                @Html.LabelFor(x => x.OutCome)
+                @Html.EditorFor(x => x.OutCome, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.OutCome)
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.LabelFor(x => x.Date)
+                @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                @Html.ValidationMessageFor(x => x.Date)
+            </td>
+
+        </tr>
+        <tr class="form_group">
+
+
+
+
+
+          
+            <td style="float: left">
+                @Html.SaveButton()
+            </td>
+
+
+
+
+
+
+        </tr>
+
+       
+
+
+    </table>
+}
+

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{819A63F7-1E93-4280-97BD-A956833EFB8A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DENTALMIS.Model</RootNamespace>
+    <AssemblyName>DENTALMIS.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClinicSectionModel\ClincDescription.cs" />
+    <Compile Include="ClinicSectionModel\ClinicAccount.cs" />
+    <Compile Include="ClinicSectionModel\ClinicalAccessory.cs" />
+    <Compile Include="ClinicSectionModel\ClinicalInstrument.cs" />
+    <Compile Include="ClinicSectionModel\ClinicEstablishment.cs" />
+    <Compile Include="ClinicSectionModel\RowMatrial.cs" />
+    <Compile Include="Custom\PaymentView.cs" />
+    <Compile Include="DiseasesSectionModel\Disease.cs" />
+    <Compile Include="DiseasesSectionModel\DiseasesInvestigation.cs" />
+    <Compile Include="DiseasesSectionModel\DiseasesManagement.cs" />
+    <Compile Include="DiseasesSectionModel\DisesesClinicalFeature.cs" />
+    <Compile Include="DiseasesSectionModel\Gender.cs" />
+    <Compile Include="DiseasesSectionModel\Patient.cs" />
+    <Compile Include="DiseasesSectionModel\PatientCondition.cs" />
+    <Compile Include="DiseasesSectionModel\PatientShedule.cs" />
+    <Compile Include="DiseasesSectionModel\PatientsMedicalHistory.cs" />
+    <Compile Include="DiseasesSectionModel\PaymentMethod.cs" />
+    <Compile Include="DiseasesSectionModel\Service.cs" />
+    <Compile Include="DiseasesSectionModel\TodaysPatientstatu.cs" />
+    <Compile Include="DoctorsModel\Doctor.cs" />
+    <Compile Include="DoctorsModel\DoctorsDesignation.cs" />
+    <Compile Include="DrugSectionModel\DrugBrand.cs" />
+    <Compile Include="DrugSectionModel\DrugDetail.cs" />
+    <Compile Include="DrugSectionModel\DrugGeneric.cs" />
+    <Compile Include="EmployeeModel\ClinicEmployee.cs" />
+    <Compile Include="EmployeeModel\Employeedesignation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DENTALMIS.Utility\DENTALMIS.Utility.csproj">
+      <Project>{12cd0758-ef30-4bf8-b55c-5ec021136f04}</Project>
+      <Name>DENTALMIS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

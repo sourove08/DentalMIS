@@ -1,0 +1,34 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.EmployeeViewModel.EmployeeDesigViewModel
+@{
+    ViewBag.Title = Model.EmployeeDesignationId > 0 ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+<div>
+
+    @using (Html.BeginForm("Save", "EmployeeDesignation", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.EmployeeDesignationId)
+        <table>
+            <tr class="form_group ">
+                <td>
+                    @Html.LabelFor(model => model.DesinationName)
+                    @Html.EditorFor(model => model.DesinationName, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+
+                    @Html.ValidationMessageFor(x => x.DesinationName)
+
+                </td>
+
+            </tr>
+           
+
+            <tr style="float: right">
+                <td>
+                    @Html.SaveButton()
+                </td>
+            </tr>
+        </table>
+
+    }
+</div>

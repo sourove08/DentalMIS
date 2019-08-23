@@ -1,0 +1,59 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.DiseasesManagementViewModel
+@{
+    ViewBag.Title = (Model.DiseasesManagementId > 0) ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "DiseasesManagement", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.DiseasesManagementId)
+    
+    <table>
+
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Disease.Name)
+                @Html.DropDownListFor(x => x.DiseasesId,Model.DiseaseSelectListItemsSelectListItems,"---Select Item---", new { @class = "text ui-widget-content ui-corner-all"  })
+                @Html.ValidationMessageFor(x => x.Disease.Name)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.DiseasesInvestigation.Name)
+                @Html.DropDownListFor(x => x.DiseasesInvestigationId, Model.DiseasescInvestigationSelectListItems, "---Select Item---", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.DiseasesInvestigation.Name)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.DisesesClinicalFeature.Symptom)
+                @Html.DropDownListFor(x => x.ClinicalFeatureId, Model.DiseasesclinicalFeatureseSelectListItems, "---Select Item---", new { @class = "text ui-widget-content ui-corner-all" })
+                @Html.ValidationMessageFor(x => x.Disease.Name)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.ManagementProcess)
+                @Html.EditorFor(x => x.ManagementProcess, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.ManagementProcess)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Prognosis)
+                @Html.EditorFor(x => x.Prognosis, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Prognosis)
+            </td>
+        </tr>
+      
+
+        <tr class="form_group">
+            <td style="float: right;">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+

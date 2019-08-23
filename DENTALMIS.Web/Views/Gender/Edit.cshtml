@@ -1,0 +1,28 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.GenderSectionViewModel.GenderViewModel
+@{
+    ViewBag.Title = (Model.GenderId > 0) ? "Edit" : "Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Gender", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.GenderId)
+    
+    <table>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x=>x.Title)
+                @Html.EditorFor(x => x.Title, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x=>x.Title)
+            </td>
+        </tr> 
+        <tr class="form_group">
+            <td style="float: right">
+                @Html.SaveButton()
+            </td>
+        </tr> 
+    </table>
+}
+

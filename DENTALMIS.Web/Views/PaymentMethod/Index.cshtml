@@ -1,0 +1,104 @@
+﻿@using DENTALMIS.Utility
+@using DENTALMIS.Web
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PaymentMethodViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 style="margin-left:450px; font-weight: bolder; color:darkblue">[--Payment Method--]</h3>
+<section class="search formCover" style="margin-bottom: 5px;color:black;">
+    @using (Html.BeginForm("Index", "PaymentMethod", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Patient.Name)
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.PatientId,Model.PatientSelectListItems,"--Select-- ", new {  @class = "search_dropdown" })
+                </td>
+                <td>
+                    @Html.LabelFor(x => x.Service.Name)
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.ServiceId, Model.ServiceSelectListItems, "--Select-- ", new { @class = "search_dropdown" })
+                </td>
+
+              
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.FromDate)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.FromDate, new { htmlAttributes = new { @placeholder = "From date", @class = "search_TextBox" } })
+                </td>
+
+                <td>
+                    @Html.LabelFor(x => x.ToDate)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.ToDate, new { htmlAttributes = new { @placeholder = "To date", @class = "search_TextBox" } })
+                </td>
+                <td>
+                    @Html.SearchButton()
+                </td>
+            </tr>
+            @*<tr>
+                    <td>
+                        @Html.ActionLink("Add User", "Edit", "DrugBrand", new { @class = "AjaxPopup", title = "Add", @action = "DrugBrand/Edit" })
+                    </td>
+                </tr>*@
+        </table>
+    }
+</section>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+                @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/PaymentMethod/Edit/" })
+            </p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.PaymentMethods, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                                grid.Column("Patient.Name", header: "Patient Name"),
+
+
+                                         grid.Column("Service.Name", header: "Service Name"),
+                                 grid.Column("Charge", header: "Charge in Taka"),
+                                        grid.Column("DiscountAmount", header: "Discount Amount in Taka"),
+                                grid.Column("TotalCharge", header: "Total Charge in Taka"),
+                                           grid.Column("Paid", header: "Paid in Taka"),
+                                         grid.Column("Due", header: "Due in Taka"),
+                                                                     grid.Column("PaymentType", header: "PaymentType"),
+                                                   grid.Column("Date", header: "Date", format: @<text>@(item.Date == null ? "" : item.Date.ToString("dd/MM/yyyy"))</text>),
+                                                              grid.Column("CreatedDate", header: "Intial Paid Date", format: @<text>@(item.CreatedDate == null ? "" : item.CreatedDate.ToString("dd/MM/yyyy"))</text>),
+                                                                                                                                    grid.Column("LastPaidDate", header: "Last Paid Date", format: @<text>@(item.LastPaidDate == null ? "" : item.LastPaidDate.ToString("dd/MM/yyyy"))</text>),
+                   
+
+                       grid.Column("Detail/Edit", format: @<text><button class="edit" action="/PaymentMethod/Edit?PaymentMethodId=@item.PaymentMethodId"></button></text>, canSort: false),
+                       grid.Column("Delete",format:@<text><button class="delete" action="/PaymentMethod/Delete?PaymentMethodId=@item.PaymentMethodId"></button></text>, canSort: false)));
+        }
+    </div>
+</section>
+
+
+

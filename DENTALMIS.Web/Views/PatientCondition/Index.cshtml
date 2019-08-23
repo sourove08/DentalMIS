@@ -1,0 +1,168 @@
+﻿@using DENTALMIS.Model
+@using DENTALMIS.Utility
+@using DENTALMIS.Web
+@using DENTALMIS.Utility
+@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.PatientConditionViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3  style="margin-left:450px; font-weight: bolder; color:darkblue;">[---Patient Condtion---]</h3>
+<section class="search formCover" style="margin-bottom: 5px; ">
+    @using (Html.BeginForm("Index", "PatientCondition", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+
+        <table>
+            <tr>
+
+                <td>
+                    @Html.LabelFor(x => x.Disease.Name)
+                </td>
+                <td>
+                    @*@Html.DropDownListFor(x => x.SearchField.SearchByDiseasesId, Model.DiseasesSelectListItems, "--Select diseases Name--", new { @class = "search_dropdown", @action = "/PatientMedicalHistory/GetAllPatientByDiseasesId", @TargetClass = "Paient" })*@
+                    @Html.DropDownList("diseasesId", Model.DiseasesSelectListItems, "--Select diseases Name--", new { @class = "search_dropdown " })
+                    @*@Html.DropDownListFor(x => x.DiseasesId, Model.DiseasesSelectListItems, "-Select-", new { @onchange = "getPatientByDisease(this.value)", @class = "search_dropdown" })*@
+
+
+                </td>
+                <td></td>
+                <td>
+
+                    @Html.LabelFor(x => x.Patient.Name)
+                </td>
+                <td>
+
+                    @Html.DropDownList("patientId", Model.PatientSelectListItems, "--Select  Name--", new { @class = "search_dropdown AjaxPopup" })
+                    @*@Html.DropDownListFor(x => x.PatienId, Model.PatientSelectListItems, "-All-", new { id = "patients", @class = "search_dropdown" })*@
+
+                <td>
+                <td>
+
+                    @Html.LabelFor(x => x.Service.Name)
+                </td>
+                <td>
+
+                    @*@Html.DropDownList("patientId", Model.PatientSelectListItems, "--Select  Name--", new { @class = "search_dropdown AjaxPopup" })*@
+                    @Html.DropDownListFor(x => x.ServiceId, Model.ServiceSelectListItems, "-Select Service--", new { id = "patients", @class = "search_dropdown" })
+
+                <td>
+                    @Html.SearchButton()
+                </td>
+            </tr>
+
+        </table>
+    }
+
+</section>
+<section class="search formCover">
+    <div class="additem">
+        <div style="margin-top: 1px;">
+            <p>
+                @Html.Button("Add New", new { @class = "AjaxPopup", @action = "/PatientCondition/Edit/" })
+            </p>
+        </div>
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: AppConfig.PageSize, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.PatientConditions, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+                tableStyle: "webgrid-table webgrid",
+                headerStyle: "webgrid-header",
+                footerStyle: "webgrid-footer",
+                alternatingRowStyle: "webgrid-alternating-row",
+                selectedRowStyle: "webgrid-selected-row",
+                rowStyle: "webgrid-row-style",
+                firstText: "First",
+                lastText: "Last",
+                nextText: "Next",
+                mode: WebGridPagerModes.All,
+                previousText: "Previous",
+                columns: grid.Columns(
+                    grid.Column("Patient.Name", header: "Patient Name"),
+
+
+                    grid.Column("Disease.Name", header: "Diseases Name"),
+                             grid.Column("Service.Name", header: "Service Name"),
+                             grid.Column("Beforetreatment", header: "Before Treatement"),
+                                                grid.Column("AfterTreatment", header: "After Treatement"),
+
+
+                             grid.Column("Createddate", header: "Created date", format: @<text>@(item.Createddate == null ? "" : item.Createddate.ToString("dd/MM/yyyy"))</text>),
+                                              grid.Column("ModifiedDate", header: "Modified Date", format: @<text>@(item.ModifiedDate == null ? "" : item.ModifiedDate.ToString("dd-MM-yyyy"))</text>),
+
+
+                    grid.Column("Detail/Edit", format: @<text><button class="edit" action="/PatientCondition/Edit?PatientConditionId=@item.PatientConditionId"></button></text>, canSort: false),
+                    grid.Column("Delete",format:@<text><button class="delete" action="/PatientCondition/Delete?PatientConditionId=@item.PatientConditionId"></button></text>, canSort: false)));
+        }
+    </div>
+</section>
+
+
+@*<script src="~/Scripts/AppScripts/Ptients2.js"></script>*@
+<script src="~/Scripts/AppScripts/Patient.js"></script>
+@section scripts{
+
+
+    @*<script type="text/javascript">
+        function getPatientByDisease(dId) { // This is for cascade dropdown
+            var url = "/PatientMedicalHistory/GetPatientbyDiseases";
+            $.ajax({
+                url: url,
+                type: "get",
+                data: { "diseasesId": dId },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length != 0) {
+                        var items = '<option >--Select Patient Name--</option>';
+                        $.each(data, function (i, d) {
+                            items += "<option value='" + d.PatientId + "'>" + d.Name + "</option>";
+                        });
+                        $('#patients').html(items);
+                    } else {
+                        var items = '<option>Not found</option>';
+                        $('#patients').html(items);
+                    }
+
+                }
+            });
+        }
+    </script>*@
+
+    <script type="text/javascript">
+        $('#diseasesId').unbind('change').bind('change', function () {
+            var dId = $(this).val();
+            var responseText = $("#diseasesId option:selected").text();
+            if (responseText != '--Select diseases Name--') {
+                getPatientByDiseasesId(dId);
+            } else {
+                $("#patientId").find('option')
+                    .remove()
+                    .end()
+                    .append('<option>--Select Name--</option>');
+
+            }
+        });
+        @*//function getPatientByDisease() {
+        //    $('#diseasesId').unbind('change').bind('change', function () {
+        //        var dId = $(this).val();
+        //        var responseText = $("#diseasesId option:selected").text();
+        //        if (responseText != '--Select diseases Name--') {
+        //            getPatientByDiseasesId(dId);
+        //        } else {
+        //            $("#patientId").find('option')
+        //                .remove()
+        //                .end()
+        //                .append('<option>--Select--</option>');
+
+        //        }
+        //    });
+        //}
+    </script>*@
+    </script>
+}
+
+
+
+
+

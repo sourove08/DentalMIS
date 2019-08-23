@@ -1,0 +1,105 @@
+﻿@model DENTALMIS.Web.Areas.DrugSection.Models.ViewModel.DrugBrandViewModel
+@{
+    Layout = null;
+    int rowCount = 1;
+}
+
+<div>
+    <link href="~/Content/App/PdfReport.css" rel="stylesheet" />
+    <table class="pdfReportTable" style="border: 2px;margin-bottom:5px; background-color:ivory;">
+        <thead class="reportHeader">
+            <tr class="reportTitle">
+                <td colspan="14" align="left">
+                    <img src="~/Content/Dental.jpg" width="200px" height="80px" />
+                </td>
+           
+                <td colspan="15" align="left" style="margin-left: 00px;">
+                    <b>ELITE DENTAL CARE Limited</b><br />
+                    <span style="font-size: 12px;"> NORTH KASHIPUR, FATULLAH, NARAYANGANJ</span>
+                    <br />[--DRUG---LIST--]
+                </td>
+               
+            </tr>
+            <tr>
+               
+                <td>Date:@DateTime.Now.Date.ToString("dd-MM-yyyy")</td>
+            </tr>
+        </thead>
+    </table>
+
+    <table class="pdfReportTable" border="4" style="background-color:ivory; color: black; font-size: 11px;">
+        <thead class="reportThead table-bordered">
+            <tr class="reportTR">
+                <td class="reportTH">
+                    SL. No
+                </td>
+                <td class="reportTH">
+                    Brand Name
+                </td>
+                <td class="reportTH">
+                    Preparation
+                </td>
+                <td class="reportTH">
+                    Generic Name
+                </td>
+            </tr>
+        </thead>
+        <tbody class="reportBody">
+
+            @foreach (var department in Model.DrugBrands)
+            {
+                <tr class="reportTR">
+                    <td class="reportTD">
+                        @rowCount
+                    </td>
+                    <td class="reportTD">
+                        @department.Name
+                    </td>
+                    <td class="reportTD">
+                        @department.Preparation
+                    </td>
+                    <td class="reportTD">
+                        @(department.DrugGeneric.Name)
+                    </td>
+                </tr>
+                rowCount += 1;
+            }
+
+        </tbody>
+
+    </table>
+    <div style="margin-top: 20px;">
+        <div style="width: 150px; float: left">
+            <hr />
+            <strong>
+                Prepared By
+            </strong>
+        </div>
+        <div style="width: 150px;float: left;margin-left: 20px;">
+            <hr />
+            <strong>
+                Doctor Signature
+            </strong>
+        </div>
+    </div>
+</div>
+
+<div>
+    <td colspan="15" align="right">
+        <input type="button" onclick="printVoucherList()" class="noprint" value="Print" />
+    </td>
+    <script type="text/javascript">
+        function printVoucherList() {
+            window.print();
+        }
+    </script>
+</div>
+
+
+
+
+
+
+
+
+

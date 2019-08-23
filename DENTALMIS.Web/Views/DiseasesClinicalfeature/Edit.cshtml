@@ -1,0 +1,36 @@
+﻿@using DENTALMIS.Web.Extension
+@model DENTALMIS.Web.Models.DiseasesSectionViewModel.DiseasesClinicalFeatureViewModel
+@{
+    ViewBag.Title =(Model.ClinicalFeatureId>0)? "Edit":"Add";
+    Layout = "~/Views/Shared/_Layout.Dialog.cshtml";
+}
+
+@using (Html.BeginForm("Save", "DiseasesClinicalfeature", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.ClinicalFeatureId)
+    <table>
+        
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x => x.Symptom)
+                @Html.EditorFor(x => x.Symptom, new { htmlAttributes = new { @class = "text ui-widget-content ui-corner-all" } })
+                @Html.ValidationMessageFor(x => x.Symptom)
+            </td>
+        </tr>
+        <tr class="form_group">
+            <td>
+                @Html.LabelFor(x=>x.Sign)
+                @Html.EditorFor(x=>x.Sign,new {  htmlAttributes=new {  @class="text ui-widget-content ui-corner-all"}})
+                @Html.ValidationMessageFor(x=>x.Sign)
+            </td>
+        </tr>
+       
+        <tr class="form_group">
+            <td style="float: right;">
+                @Html.SaveButton()
+            </td>
+        </tr>
+    </table>
+}
+
